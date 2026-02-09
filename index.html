@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAVI - AI Chief of Staff | 100% Local & Private</title>
+    <meta name="description" content="Voice-first AI assistant that runs entirely on your laptop. Task management, calendar sync, meeting intelligence - no cloud, no GPU required.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="KAVI - Your AI Chief of Staff, 100% on Your Machine">
+    <meta property="og:description" content="Voice-first task management, calendar sync, and meeting intelligence. Runs entirely on your laptop - no cloud, no GPU, no compromise.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KAVI - AI Chief of Staff | 100% Local">
+    <meta name="twitter:description" content="Voice-first AI that runs entirely on your laptop. No cloud. No GPU. No compromise.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
+                    colors: {
+                        sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
+                        kavi: {
+                            cyan: '#38BDF8',
+                            gold: '#FBBF24',
+                            bg: '#0a0a0f',
+                            surface: '#0f172a',
+                            card: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom animations */
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.3); } 50% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.6); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.4); opacity: 0; } }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
+        .animate-breathe { animation: breathe 4s ease-in-out infinite; }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Glass card effect */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
+
+        /* Gradient text */
+        .gradient-text { background: linear-gradient(135deg, #4ade80, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* Data flow line animation */
+        .flow-line { background: linear-gradient(90deg, transparent, #4ade80, transparent); height: 2px; animation: flowMove 2s linear infinite; }
+        @keyframes flowMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+
+        /* Tally form dark mode override */
+        iframe[data-tally-src] { color-scheme: dark; }
+    </style>
+</head>
+
+<body class="bg-kavi-bg text-slate-50 font-sans antialiased">
+
+    <!-- ================================================================== -->
+    <!-- NAVIGATION -->
+    <!-- ================================================================== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/80 border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="assets/kavi-logo.svg" alt="KAVI" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform">
+                <span class="text-xl font-semibold tracking-tight">KAVI</span>
+            </a>
+
+            <!-- Nav Links (desktop) -->
+            <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#privacy" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </div>
+
+            <!-- CTA -->
+            <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-sage-500 transition-all hover:scale-105">
+                Join Waitlist
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- ================================================================== -->
+    <!-- HERO -->
+    <!-- ================================================================== -->
+    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-sage-400/5 via-transparent to-transparent"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-sage-400/10 rounded-full blur-[128px]"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-slate-300 mb-8">
+                <span class="w-2 h-2 bg-sage-400 rounded-full animate-pulse"></span>
+                Now building in public
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 max-w-4xl mx-auto">
+                Your AI Chief of Staff.<br>
+                <span class="gradient-text">100% on Your Machine.</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Voice-first task management, calendar sync, and meeting intelligence &mdash; running entirely on your laptop. No cloud. No GPU. No compromise.
+            </p>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-lg hover:bg-sage-500 transition-all hover:scale-105 animate-glow">
+                    Join the Waitlist
+                </a>
+                <a href="#features" class="glass px-8 py-4 rounded-full text-lg text-slate-300 hover:text-white transition-all">
+                    See How It Works &darr;
+                </a>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-slate-500">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    100% Local
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    &lt; 600ms Response
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    CPU Only
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    Open Source
+                </div>
+            </div>
+
+            <!-- Hero mockup -->
+            <div class="mt-16 relative max-w-4xl mx-auto animate-float">
+                <div class="glass rounded-2xl p-1">
+                    <div class="bg-kavi-surface rounded-xl overflow-hidden">
+                        <!-- Mock window chrome -->
+                        <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+                            <span class="ml-3 text-xs text-slate-500">Kavi - The Digital Sage</span>
+                        </div>
+                        <!-- Mock dashboard -->
+                        <div class="p-6 flex gap-4">
+                            <!-- Sidebar -->
+                            <div class="hidden sm:flex flex-col gap-3 w-12 py-2">
+                                <div class="w-8 h-8 rounded-lg bg-sage-400/20 mx-auto"></div>
+                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
+                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
+                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
+                            </div>
+                            <!-- Main content -->
+                            <div class="flex-1 space-y-4">
+                                <div class="flex gap-3">
+                                    <div class="glass rounded-lg p-4 flex-1 text-left">
+                                        <div class="text-xs text-slate-500 mb-1">Tasks In Progress</div>
+                                        <div class="text-2xl font-bold text-sage-400">7</div>
+                                    </div>
+                                    <div class="glass rounded-lg p-4 flex-1 text-left">
+                                        <div class="text-xs text-slate-500 mb-1">Meetings Today</div>
+                                        <div class="text-2xl font-bold text-kavi-cyan">3</div>
+                                    </div>
+                                    <div class="hidden md:block glass rounded-lg p-4 flex-1 text-left">
+                                        <div class="text-xs text-slate-500 mb-1">Voice Commands</div>
+                                        <div class="text-2xl font-bold text-kavi-gold">24</div>
+                                    </div>
+                                </div>
+                                <!-- Voice bar -->
+                                <div class="glass rounded-full px-5 py-3 flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-sage-400 animate-pulse"></div>
+                                    <span class="text-sm text-slate-400">"Add task: Review Q2 roadmap by Friday"</span>
+                                </div>
+                                <!-- Kanban preview -->
+                                <div class="flex gap-3">
+                                    <div class="flex-1 space-y-2">
+                                        <div class="text-xs text-slate-500 font-medium">To Do</div>
+                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-300">Review PR #142</div>
+                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-300">Update API docs</div>
+                                    </div>
+                                    <div class="flex-1 space-y-2">
+                                        <div class="text-xs text-slate-500 font-medium">In Progress</div>
+                                        <div class="bg-sage-400/10 border border-sage-400/20 rounded-lg p-3 text-xs text-sage-400">Design v2 mockups</div>
+                                    </div>
+                                    <div class="hidden md:block flex-1 space-y-2">
+                                        <div class="text-xs text-slate-500 font-medium">Done</div>
+                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-500 line-through">Fix auth bug</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- PROBLEM -->
+    <!-- ================================================================== -->
+    <section class="py-24 md:py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                    Your productivity stack is <span class="text-red-400">broken</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">Sound familiar?</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="glass rounded-2xl p-8 fade-in text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Meeting notes vanish</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Important decisions are lost in hour-long recordings nobody rewatches. Action items slip through the cracks.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 fade-in text-center" style="transition-delay: 0.1s">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">Tasks across 5 apps</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Slack reminders, email flags, sticky notes, Jira tickets, calendar events. Your to-do list is everywhere and nowhere.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 fade-in text-center" style="transition-delay: 0.2s">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-3">AI sends it all to the cloud</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Every AI assistant uploads your conversations, meetings, and tasks to someone else's servers. Your data isn't yours anymore.</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <p class="text-xl md:text-2xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+                    What if one assistant handled it all &mdash;<br class="hidden md:block">
+                    <span class="font-medium text-white">without ever leaving your machine?</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- FEATURES -->
+    <!-- ================================================================== -->
+    <section id="features" class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-kavi-cyan/3 to-transparent"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                    Everything you need.<br>
+                    <span class="gradient-text">Nothing in the cloud.</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">Four pillars of local-first productivity.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Voice -->
+                <div class="glass rounded-2xl p-8 fade-in group">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl bg-sage-400/10 flex items-center justify-center shrink-0 group-hover:bg-sage-400/20 transition-colors">
+                            <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Voice-First Interface</h3>
+                            <p class="text-slate-400 leading-relaxed">Talk to KAVI like a colleague. Add tasks, check your calendar, search meetings &mdash; all by voice in under 600 milliseconds. Powered by Whisper, running locally.</p>
+                            <div class="mt-4 glass rounded-full px-4 py-2 inline-flex items-center gap-2 text-sm text-sage-400">
+                                <span class="w-2 h-2 bg-sage-400 rounded-full animate-pulse"></span>
+                                "Remind me to call Sarah at 3pm"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks -->
+                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.1s">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl bg-kavi-cyan/10 flex items-center justify-center shrink-0 group-hover:bg-kavi-cyan/20 transition-colors">
+                            <svg class="w-6 h-6 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Smart Task Management</h3>
+                            <p class="text-slate-400 leading-relaxed">Kanban boards that update from voice commands. Drag, drop, prioritize. KAVI extracts action items from meetings and turns them into tasks automatically.</p>
+                            <div class="mt-4 flex gap-2">
+                                <span class="px-3 py-1 rounded-full bg-kavi-cyan/10 text-kavi-cyan text-xs">To Do</span>
+                                <span class="px-3 py-1 rounded-full bg-kavi-gold/10 text-kavi-gold text-xs">In Progress</span>
+                                <span class="px-3 py-1 rounded-full bg-sage-400/10 text-sage-400 text-xs">Done</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.2s">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl bg-kavi-gold/10 flex items-center justify-center shrink-0 group-hover:bg-kavi-gold/20 transition-colors">
+                            <svg class="w-6 h-6 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Calendar Integration</h3>
+                            <p class="text-slate-400 leading-relaxed">Google + Outlook in one unified view. Proactive meeting alerts via voice. KAVI tells you what's coming up so you never miss a commitment.</p>
+                            <div class="mt-4 text-sm text-slate-500 flex items-center gap-3">
+                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-400"></span>Google</span>
+                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-400"></span>Outlook</span>
+                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sage-400"></span>Local</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meetings -->
+                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.3s">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl bg-purple-400/10 flex items-center justify-center shrink-0 group-hover:bg-purple-400/20 transition-colors">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Meeting Intelligence</h3>
+                            <p class="text-slate-400 leading-relaxed">Record meetings, get instant transcripts and AI summaries. Search across every conversation: "What did we decide about the API redesign?"</p>
+                            <div class="mt-4 glass rounded-lg px-4 py-2 text-sm text-slate-400">
+                                <span class="text-purple-400 font-medium">3 action items</span> extracted from standup
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- PRIVACY -->
+    <!-- ================================================================== -->
+    <section id="privacy" class="py-24 md:py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                    Your data never leaves your machine.<br>
+                    <span class="gradient-text">Period.</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Unlike every other AI assistant, KAVI processes everything on your CPU. Your meetings, tasks, and voice recordings stay on your hardware.</p>
+            </div>
+
+            <!-- Data flow diagram -->
+            <div class="glass rounded-3xl p-8 md:p-12 mb-12 fade-in">
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-sage-400/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                        </div>
+                        <div class="text-sm font-semibold mb-1">Your Voice</div>
+                        <div class="text-xs text-slate-500">Captured locally via cpal</div>
+                    </div>
+
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-kavi-cyan/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <div class="text-sm font-semibold mb-1">Local AI Brain</div>
+                        <div class="text-xs text-slate-500">Whisper STT + Qwen LLM on CPU</div>
+                    </div>
+
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-kavi-gold/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                        </div>
+                        <div class="text-sm font-semibold mb-1">Local Storage</div>
+                        <div class="text-xs text-slate-500">SQLite on your disk</div>
+                    </div>
+
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-purple-400/10 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                        </div>
+                        <div class="text-sm font-semibold mb-1">Voice Output</div>
+                        <div class="text-xs text-slate-500">Piper TTS on your speakers</div>
+                    </div>
+                </div>
+
+                <!-- Flow arrows -->
+                <div class="hidden md:flex items-center justify-center gap-4 my-6">
+                    <div class="flex-1 h-px bg-gradient-to-r from-sage-400/50 to-kavi-cyan/50"></div>
+                    <div class="flex-1 h-px bg-gradient-to-r from-kavi-cyan/50 to-kavi-gold/50"></div>
+                    <div class="flex-1 h-px bg-gradient-to-r from-kavi-gold/50 to-purple-400/50"></div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sage-400/10 text-sage-400 text-sm font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Everything above happens on YOUR machine
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust signals -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
+                <div class="glass rounded-xl p-5 text-center">
+                    <div class="text-2xl mb-2">&#128274;</div>
+                    <div class="text-sm font-medium">No Telemetry</div>
+                    <div class="text-xs text-slate-500 mt-1">Zero data collection</div>
+                </div>
+                <div class="glass rounded-xl p-5 text-center">
+                    <div class="text-2xl mb-2">&#9729;&#65039;</div>
+                    <div class="text-sm font-medium">No Cloud AI</div>
+                    <div class="text-xs text-slate-500 mt-1">Models run on your CPU</div>
+                </div>
+                <div class="glass rounded-xl p-5 text-center">
+                    <div class="text-2xl mb-2">&#128065;&#65039;</div>
+                    <div class="text-sm font-medium">Fully Auditable</div>
+                    <div class="text-xs text-slate-500 mt-1">Open source code</div>
+                </div>
+                <div class="glass rounded-xl p-5 text-center">
+                    <div class="text-2xl mb-2">&#127760;</div>
+                    <div class="text-sm font-medium">Works Offline</div>
+                    <div class="text-xs text-slate-500 mt-1">No internet required*</div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-slate-600 mt-4">*Internet needed only for optional Google/Outlook calendar sync via OAuth.</p>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- HOW IT WORKS -->
+    <!-- ================================================================== -->
+    <section class="py-24 md:py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Three steps to freedom</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 rounded-full bg-sage-400/10 border-2 border-sage-400/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-sage-400">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Install</h3>
+                    <p class="text-slate-400 leading-relaxed">Download KAVI for Windows, macOS, or Linux. No sign-up, no account, no cloud dependency. Just install and go.</p>
+                </div>
+
+                <div class="text-center fade-in" style="transition-delay: 0.1s">
+                    <div class="w-16 h-16 rounded-full bg-kavi-cyan/10 border-2 border-kavi-cyan/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-kavi-cyan">2</div>
+                    <h3 class="text-xl font-semibold mb-3">Speak</h3>
+                    <p class="text-slate-400 leading-relaxed">Talk naturally. "Add a task to review the budget." "What's on my calendar tomorrow?" KAVI understands and acts.</p>
+                </div>
+
+                <div class="text-center fade-in" style="transition-delay: 0.2s">
+                    <div class="w-16 h-16 rounded-full bg-kavi-gold/10 border-2 border-kavi-gold/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-kavi-gold">3</div>
+                    <h3 class="text-xl font-semibold mb-3">Relax</h3>
+                    <p class="text-slate-400 leading-relaxed">Meetings get summarized, action items tracked, calendars synced, reports generated. All locally. All automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- WHO IT'S FOR -->
+    <!-- ================================================================== -->
+    <section class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sage-400/3 to-transparent"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Built for how you work</h2>
+                <p class="text-slate-400 text-lg">KAVI adapts to your role with persona-specific intelligence.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-sage-400/30 transition-all cursor-default">
+                    <div class="text-3xl mb-4">&#128187;</div>
+                    <h3 class="font-semibold mb-2">Developers</h3>
+                    <p class="text-slate-400 text-sm">Track bugs, manage sprints, search standups by voice</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-kavi-cyan/30 transition-all cursor-default" style="transition-delay: 0.1s">
+                    <div class="text-3xl mb-4">&#128200;</div>
+                    <h3 class="font-semibold mb-2">Managers</h3>
+                    <p class="text-slate-400 text-sm">Team status, meeting summaries, automated weekly reports</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-kavi-gold/30 transition-all cursor-default" style="transition-delay: 0.2s">
+                    <div class="text-3xl mb-4">&#127793;</div>
+                    <h3 class="font-semibold mb-2">Entrepreneurs</h3>
+                    <p class="text-slate-400 text-sm">Client meetings, task management, calendar in one place</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-purple-400/30 transition-all cursor-default" style="transition-delay: 0.3s">
+                    <div class="text-3xl mb-4">&#128272;</div>
+                    <h3 class="font-semibold mb-2">Privacy-First Pros</h3>
+                    <p class="text-slate-400 text-sm">Lawyers, therapists, researchers &mdash; where confidentiality is non-negotiable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- WAITLIST / PRICING VALIDATION -->
+    <!-- ================================================================== -->
+    <section id="waitlist" class="py-24 md:py-32 relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-sage-400 mb-6">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Beta launching Q2 2026
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6" id="pricing">
+                    Help us build <span class="gradient-text">KAVI</span> for you
+                </h2>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">
+                    We're building KAVI in public. Join the waitlist to get early access and help shape the product &mdash; including pricing.
+                </p>
+            </div>
+
+            <!-- Tally.so Form Embed -->
+            <div class="glass rounded-3xl p-2 fade-in">
+                <div class="bg-kavi-surface rounded-2xl p-8 min-h-[500px] flex items-center justify-center">
+                    <iframe
+                        data-tally-src="https://tally.so/embed/XxWDY4?alignLeft=1&hideTitle=1&dynamicHeight=1"
+                        loading="lazy"
+                        width="100%"
+                        height="500"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        title="KAVI Waitlist">
+                    </iframe>
+                    <script>
+                        var d=document,w="https://tally.so/widgets/embed.js";
+                        if(!d.querySelector('script[src="'+w+'"]')){
+                            var s=d.createElement("script");
+                            s.src=w;
+                            s.onload=function(){Tally.loadEmbeds()};
+                            d.body.appendChild(s);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- FAQ -->
+    <!-- ================================================================== -->
+    <section id="faq" class="py-24 md:py-32 relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Frequently asked questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <details class="glass rounded-xl group fade-in">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        Is KAVI really 100% local?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        Yes. All AI processing (voice recognition, language model, text-to-speech) runs on your CPU. The only network traffic is optional OAuth for Google/Outlook calendar sync &mdash; and that only sends calendar data, never your voice, tasks, or meetings.
+                    </div>
+                </details>
+
+                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.05s">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        What are the system requirements?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        Any modern laptop with 4GB+ RAM. No GPU required &mdash; KAVI uses 4-bit quantized models optimized for CPU inference. Total memory usage stays under 1.5GB with all features active.
+                    </div>
+                </details>
+
+                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.1s">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        Does it work on Windows, Mac, and Linux?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        Yes. KAVI is built with Tauri v2, which compiles native binaries for all three platforms. System audio capture works via WASAPI (Windows), ScreenCaptureKit (macOS), and PulseAudio (Linux).
+                    </div>
+                </details>
+
+                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.15s">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        Is KAVI open source?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        The core engine will be open source so anyone can audit the code and verify that your data stays local. We believe transparency is essential for a privacy-first product.
+                    </div>
+                </details>
+
+                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.2s">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        When will KAVI be available?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        We're targeting a beta launch in Q2 2026. Waitlist members get first access. Join above to be among the first to try KAVI.
+                    </div>
+                </details>
+
+                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.25s">
+                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                        How does voice recognition work without internet?
+                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    </summary>
+                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
+                        KAVI uses Whisper tiny.en, a speech recognition model that runs entirely on CPU. It's bundled with the app &mdash; no internet connection needed for any AI features. The model is only 75MB and processes speech in real-time.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================== -->
+    <!-- FOOTER -->
+    <!-- ================================================================== -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="assets/kavi-logo.svg" alt="KAVI" class="w-6 h-6 rounded-md">
+                    <span class="text-sm text-slate-400">KAVI &mdash; The Digital Sage</span>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm text-slate-500">
+                    <a href="https://github.com" class="hover:text-white transition-colors">GitHub</a>
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="mailto:hello@kavi.app" class="hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div class="text-xs text-slate-600">
+                    Built with Rust. Powered by local AI.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================================================================== -->
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <!-- ================================================================== -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Mobile nav: close on link click (future hamburger menu)
+    </script>
+
+</body>
+</html>
