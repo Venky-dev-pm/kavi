@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAVI - AI Chief of Staff | 100% Local & Private</title>
-    <meta name="description" content="Voice-first AI assistant that runs entirely on your laptop. Task management, calendar sync, meeting intelligence - no cloud, no GPU required.">
+    <title>KAVI — Offline Meeting Intelligence | Record, Transcribe, Search Locally</title>
+    <meta name="description" content="Record, transcribe, and search your meetings — 100% offline, on any laptop. AI summaries, action items, and full-text search. No cloud. No GPU. No compromise.">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="KAVI - Your AI Chief of Staff, 100% on Your Machine">
-    <meta property="og:description" content="Voice-first task management, calendar sync, and meeting intelligence. Runs entirely on your laptop - no cloud, no GPU, no compromise.">
+    <meta property="og:title" content="KAVI — Offline Meeting Intelligence">
+    <meta property="og:description" content="Record, transcribe, and search your meetings — 100% offline, on any laptop. No cloud. No GPU. No compromise.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:site_name" content="KAVI">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KAVI - AI Chief of Staff | 100% Local">
-    <meta name="twitter:description" content="Voice-first AI that runs entirely on your laptop. No cloud. No GPU. No compromise.">
+    <meta name="twitter:title" content="KAVI — Offline Meeting Intelligence">
+    <meta name="twitter:description" content="Record, transcribe, and search your meetings — 100% offline on your laptop.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -25,7 +26,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,15 +34,20 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
                     colors: {
                         sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
                         kavi: {
                             cyan: '#38BDF8',
                             gold: '#FBBF24',
-                            bg: '#0a0a0f',
+                            purple: '#a78bfa',
+                            bg: '#050508',
                             surface: '#0f172a',
-                            card: '#1e293b',
+                            card: '#131c2e',
+                            border: 'rgba(255,255,255,0.06)'
                         }
                     }
                 }
@@ -50,182 +56,282 @@
     </script>
 
     <style>
-        /* Custom animations */
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.3); } 50% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.6); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.4); opacity: 0; } }
-        @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        /* ── Animations ── */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 24px rgba(74,222,128,0.25); } 50% { box-shadow: 0 0 48px rgba(74,222,128,0.45); } }
+        @keyframes fade-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+        @keyframes wave-1 { 0%, 100% { height: 8px; } 50% { height: 24px; } }
+        @keyframes wave-2 { 0%, 100% { height: 16px; } 50% { height: 32px; } }
+        @keyframes wave-3 { 0%, 100% { height: 12px; } 50% { height: 28px; } }
+        @keyframes wave-4 { 0%, 100% { height: 20px; } 50% { height: 10px; } }
+        @keyframes orbit { from { transform: rotate(0deg) translateX(140px) rotate(0deg); } to { transform: rotate(360deg) translateX(140px) rotate(-360deg); } }
+        @keyframes dash-flow { to { stroke-dashoffset: -20; } }
+        @keyframes scale-in { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
 
         .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-glow { animation: glow 3s ease-in-out infinite; }
-        .animate-breathe { animation: breathe 4s ease-in-out infinite; }
+        .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
 
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
 
-        /* Glass card effect */
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .glass:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
+        /* ── Glass ── */
+        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+        .glass-strong { background: rgba(255,255,255,0.04); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); }
 
-        /* Gradient text */
+        /* ── Gradients ── */
         .gradient-text { background: linear-gradient(135deg, #4ade80, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-text-warm { background: linear-gradient(135deg, #4ade80, #FBBF24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-border { position: relative; }
+        .gradient-border::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(74,222,128,0.3), rgba(56,189,248,0.3)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
 
-        /* Data flow line animation */
-        .flow-line { background: linear-gradient(90deg, transparent, #4ade80, transparent); height: 2px; animation: flowMove 2s linear infinite; }
-        @keyframes flowMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        /* ── Waveform bars ── */
+        .wave-bar { width: 3px; border-radius: 2px; background: #4ade80; }
+        .wave-1 { animation: wave-1 1s ease-in-out infinite; }
+        .wave-2 { animation: wave-2 1s ease-in-out 0.1s infinite; }
+        .wave-3 { animation: wave-3 1s ease-in-out 0.2s infinite; }
+        .wave-4 { animation: wave-4 1s ease-in-out 0.3s infinite; }
+        .wave-5 { animation: wave-1 1s ease-in-out 0.15s infinite; }
+        .wave-6 { animation: wave-3 1s ease-in-out 0.25s infinite; }
+        .wave-7 { animation: wave-2 1s ease-in-out 0.05s infinite; }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        /* ── Terminal ── */
+        .terminal-line { overflow: hidden; white-space: nowrap; border-right: 2px solid #4ade80; animation: typing 2.5s steps(40, end) forwards, blink 0.75s step-end infinite; }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050508; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
 
-        /* Tally form dark mode override */
+        /* ── Tally form ── */
         iframe[data-tally-src] { color-scheme: dark; }
+
+        /* ── Feature card hover accent ── */
+        .feature-card { transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-4px); }
+        .feature-card:hover .feature-icon { transform: scale(1.1); }
+        .feature-icon { transition: transform 0.3s ease; }
+
+        /* ── Mobile menu ── */
+        .mobile-menu { transform: translateY(-100%); transition: transform 0.3s ease; }
+        .mobile-menu.open { transform: translateY(0); }
+
+        /* ── Noise texture ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            opacity: 0.015;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
     </style>
 </head>
 
-<body class="bg-kavi-bg text-slate-50 font-sans antialiased">
+<body class="bg-kavi-bg text-slate-50 font-sans antialiased overflow-x-hidden">
 
-    <!-- ================================================================== -->
-    <!-- NAVIGATION -->
-    <!-- ================================================================== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/80 border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- NAVIGATION                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/70 border-b border-white/[0.04]" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="assets/kavi-logo.svg" alt="KAVI" class="w-8 h-8 rounded-lg group-hover:scale-110 transition-transform">
-                <span class="text-xl font-semibold tracking-tight">KAVI</span>
+            <a href="#" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
+                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                    <img src="assets/kavi-logo.svg" alt="" class="w-full h-full">
+                </div>
+                <span class="text-lg font-bold tracking-tight">KAVI</span>
             </a>
 
-            <!-- Nav Links (desktop) -->
-            <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
-                <a href="#features" class="hover:text-white transition-colors">Features</a>
-                <a href="#privacy" class="hover:text-white transition-colors">Privacy</a>
-                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8 text-[13px] text-slate-400 font-medium">
+                <a href="#features" class="hover:text-white transition-colors duration-200">Features</a>
+                <a href="#use-cases" class="hover:text-white transition-colors duration-200">Use Cases</a>
+                <a href="#privacy" class="hover:text-white transition-colors duration-200">Privacy</a>
+                <a href="#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+                <a href="#faq" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="features.html" class="hover:text-white transition-colors duration-200">All Features</a>
             </div>
 
-            <!-- CTA -->
-            <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-sage-500 transition-all hover:scale-105">
-                Join Waitlist
-            </a>
+            <!-- CTA + Mobile toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">
+                    Join Waitlist
+                </a>
+                <button class="md:hidden p-2 text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-nav" class="mobile-menu md:hidden border-t border-white/[0.04] bg-kavi-bg/95 backdrop-blur-xl">
+            <div class="px-6 py-4 space-y-3 text-sm">
+                <a href="#features" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Features</a>
+                <a href="#use-cases" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Use Cases</a>
+                <a href="#privacy" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Privacy</a>
+                <a href="#pricing" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Pricing</a>
+                <a href="#faq" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">FAQ</a>
+                <a href="features.html" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">All Features</a>
+                <a href="#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full mt-2" onclick="document.getElementById('mobile-nav').classList.remove('open')">Join Waitlist</a>
+            </div>
         </div>
     </nav>
 
 
-    <!-- ================================================================== -->
-    <!-- HERO -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- HERO                                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        <!-- Background gradient -->
-        <div class="absolute inset-0 bg-gradient-to-b from-sage-400/5 via-transparent to-transparent"></div>
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-sage-400/10 rounded-full blur-[128px]"></div>
+        <!-- Background effects -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sage-400/[0.07] rounded-full blur-[160px]"></div>
+            <div class="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-kavi-cyan/[0.04] rounded-full blur-[120px]"></div>
+        </div>
 
-        <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 text-center">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-slate-300 mb-8">
-                <span class="w-2 h-2 bg-sage-400 rounded-full animate-pulse"></span>
-                Now building in public
-            </div>
+        <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Copy -->
+                <div>
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[13px] text-slate-300 mb-8">
+                        <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse"></span>
+                        Free to start &middot; Building in public
+                    </div>
 
-            <!-- Headline -->
-            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 max-w-4xl mx-auto">
-                Your AI Chief of Staff.<br>
-                <span class="gradient-text">100% on Your Machine.</span>
-            </h1>
+                    <!-- Headline -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                        Offline Meeting<br>
+                        Intelligence.<br>
+                        <span class="gradient-text">Nothing Uploaded.</span>
+                    </h1>
 
-            <!-- Subheadline -->
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Voice-first task management, calendar sync, and meeting intelligence &mdash; running entirely on your laptop. No cloud. No GPU. No compromise.
-            </p>
+                    <!-- Subheadline -->
+                    <p class="text-lg text-slate-400 max-w-lg leading-relaxed mb-8">
+                        Record, transcribe, and extract insights from every meeting — running 100% on your laptop's CPU. No cloud. No GPU. Free for up to 10 meetings per week.
+                    </p>
 
-            <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-lg hover:bg-sage-500 transition-all hover:scale-105 animate-glow">
-                    Join the Waitlist
-                </a>
-                <a href="#features" class="glass px-8 py-4 rounded-full text-lg text-slate-300 hover:text-white transition-all">
-                    See How It Works &darr;
-                </a>
-            </div>
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-start gap-3 mb-10">
+                        <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
+                            Join the Waitlist
+                        </a>
+                        <a href="#features" class="glass px-7 py-3.5 rounded-full text-[15px] text-slate-300 hover:text-white transition-all hover:bg-white/[0.06]">
+                            See how it works &darr;
+                        </a>
+                    </div>
 
-            <!-- Trust badges -->
-            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-slate-500">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    100% Local
+                    <!-- Trust row -->
+                    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-slate-500">
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            100% Local
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            &lt;600ms latency
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            CPU only
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Free to start
+                        </span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    &lt; 600ms Response
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    CPU Only
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                    Open Source
-                </div>
-            </div>
 
-            <!-- Hero mockup -->
-            <div class="mt-16 relative max-w-4xl mx-auto animate-float">
-                <div class="glass rounded-2xl p-1">
-                    <div class="bg-kavi-surface rounded-xl overflow-hidden">
-                        <!-- Mock window chrome -->
-                        <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5">
-                            <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
-                            <span class="ml-3 text-xs text-slate-500">Kavi - The Digital Sage</span>
-                        </div>
-                        <!-- Mock dashboard -->
-                        <div class="p-6 flex gap-4">
-                            <!-- Sidebar -->
-                            <div class="hidden sm:flex flex-col gap-3 w-12 py-2">
-                                <div class="w-8 h-8 rounded-lg bg-sage-400/20 mx-auto"></div>
-                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
-                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
-                                <div class="w-8 h-8 rounded-lg bg-white/5 mx-auto"></div>
+                <!-- Right: Product mockup -->
+                <div class="relative animate-float hidden lg:block">
+                    <div class="glass-strong rounded-2xl p-1 shadow-2xl shadow-sage-400/5">
+                        <div class="bg-kavi-surface rounded-xl overflow-hidden">
+                            <!-- Window chrome -->
+                            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/[0.04]">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                                <span class="ml-3 text-xs text-slate-600 font-mono">kavi — meeting intelligence</span>
                             </div>
-                            <!-- Main content -->
-                            <div class="flex-1 space-y-4">
-                                <div class="flex gap-3">
-                                    <div class="glass rounded-lg p-4 flex-1 text-left">
-                                        <div class="text-xs text-slate-500 mb-1">Tasks In Progress</div>
-                                        <div class="text-2xl font-bold text-sage-400">7</div>
+
+                            <!-- Dashboard mock -->
+                            <div class="p-5 space-y-4">
+                                <!-- Stats row -->
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="bg-white/[0.02] rounded-lg p-3 border border-white/[0.04]">
+                                        <div class="text-[10px] text-slate-500 mb-0.5 font-medium uppercase tracking-wider">Meetings</div>
+                                        <div class="text-xl font-bold text-sage-400">12</div>
+                                        <div class="text-[10px] text-slate-600 mt-0.5">this week</div>
                                     </div>
-                                    <div class="glass rounded-lg p-4 flex-1 text-left">
-                                        <div class="text-xs text-slate-500 mb-1">Meetings Today</div>
-                                        <div class="text-2xl font-bold text-kavi-cyan">3</div>
+                                    <div class="bg-white/[0.02] rounded-lg p-3 border border-white/[0.04]">
+                                        <div class="text-[10px] text-slate-500 mb-0.5 font-medium uppercase tracking-wider">Tasks</div>
+                                        <div class="text-xl font-bold text-kavi-cyan">24</div>
+                                        <div class="text-[10px] text-slate-600 mt-0.5">in progress</div>
                                     </div>
-                                    <div class="hidden md:block glass rounded-lg p-4 flex-1 text-left">
-                                        <div class="text-xs text-slate-500 mb-1">Voice Commands</div>
-                                        <div class="text-2xl font-bold text-kavi-gold">24</div>
+                                    <div class="bg-white/[0.02] rounded-lg p-3 border border-white/[0.04]">
+                                        <div class="text-[10px] text-slate-500 mb-0.5 font-medium uppercase tracking-wider">Action Items</div>
+                                        <div class="text-xl font-bold text-kavi-gold">8</div>
+                                        <div class="text-[10px] text-slate-600 mt-0.5">pending</div>
                                     </div>
                                 </div>
-                                <!-- Voice bar -->
-                                <div class="glass rounded-full px-5 py-3 flex items-center gap-3">
-                                    <div class="w-3 h-3 rounded-full bg-sage-400 animate-pulse"></div>
-                                    <span class="text-sm text-slate-400">"Add task: Review Q2 roadmap by Friday"</span>
+
+                                <!-- Active recording -->
+                                <div class="bg-sage-400/[0.06] border border-sage-400/20 rounded-lg p-3.5">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></div>
+                                            <span class="text-xs font-medium text-sage-400">Recording: Sprint Retro</span>
+                                        </div>
+                                        <span class="text-[10px] text-slate-500 font-mono">23:41</span>
+                                    </div>
+                                    <!-- Waveform -->
+                                    <div class="flex items-end gap-[3px] h-8 px-1">
+                                        <div class="wave-bar wave-1"></div>
+                                        <div class="wave-bar wave-2"></div>
+                                        <div class="wave-bar wave-3"></div>
+                                        <div class="wave-bar wave-4"></div>
+                                        <div class="wave-bar wave-5"></div>
+                                        <div class="wave-bar wave-6"></div>
+                                        <div class="wave-bar wave-7"></div>
+                                        <div class="wave-bar wave-1"></div>
+                                        <div class="wave-bar wave-3"></div>
+                                        <div class="wave-bar wave-2"></div>
+                                        <div class="wave-bar wave-5"></div>
+                                        <div class="wave-bar wave-4"></div>
+                                        <div class="wave-bar wave-6"></div>
+                                        <div class="wave-bar wave-1"></div>
+                                        <div class="wave-bar wave-7"></div>
+                                        <div class="wave-bar wave-3"></div>
+                                        <div class="wave-bar wave-2"></div>
+                                        <div class="wave-bar wave-5"></div>
+                                    </div>
                                 </div>
-                                <!-- Kanban preview -->
-                                <div class="flex gap-3">
-                                    <div class="flex-1 space-y-2">
-                                        <div class="text-xs text-slate-500 font-medium">To Do</div>
-                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-300">Review PR #142</div>
-                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-300">Update API docs</div>
+
+                                <!-- Transcript preview -->
+                                <div class="bg-white/[0.02] rounded-lg p-3.5 border border-white/[0.04]">
+                                    <div class="text-[10px] text-slate-500 font-medium uppercase tracking-wider mb-2">Live Transcript</div>
+                                    <div class="space-y-1.5 text-xs text-slate-400">
+                                        <p><span class="text-slate-500">[23:12]</span> We should prioritize the API migration...</p>
+                                        <p><span class="text-slate-500">[23:28]</span> Let's assign the auth refactor to next sprint</p>
+                                        <p class="text-sage-400"><span class="text-slate-500">[23:41]</span> Action: Review deployment pipeline by Friday</p>
                                     </div>
-                                    <div class="flex-1 space-y-2">
-                                        <div class="text-xs text-slate-500 font-medium">In Progress</div>
-                                        <div class="bg-sage-400/10 border border-sage-400/20 rounded-lg p-3 text-xs text-sage-400">Design v2 mockups</div>
+                                </div>
+
+                                <!-- AI Summary snippet -->
+                                <div class="bg-white/[0.02] rounded-lg p-3.5 border border-white/[0.04]">
+                                    <div class="flex items-center gap-1.5 mb-2">
+                                        <svg class="w-3 h-3 text-kavi-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                                        <span class="text-[10px] text-kavi-purple font-medium uppercase tracking-wider">AI Summary</span>
                                     </div>
-                                    <div class="hidden md:block flex-1 space-y-2">
-                                        <div class="text-xs text-slate-500 font-medium">Done</div>
-                                        <div class="bg-white/[0.03] rounded-lg p-3 text-xs text-slate-500 line-through">Fix auth bug</div>
-                                    </div>
+                                    <p class="text-xs text-slate-400 leading-relaxed">Team agreed to prioritize API migration. Auth refactor moved to Sprint 14. 3 action items extracted.</p>
                                 </div>
                             </div>
                         </div>
@@ -236,328 +342,540 @@
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- PROBLEM -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PROBLEM STATEMENT                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <section class="py-24 md:py-32 relative">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                    Your productivity stack is <span class="text-red-400">broken</span>
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">The problem</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Every meeting recorder<br>sends your data to the cloud.
                 </h2>
-                <p class="text-slate-400 text-lg max-w-xl mx-auto">Sound familiar?</p>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">Your NDA calls, client strategies, legal consultations — uploaded to servers you don't control.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
-                <div class="glass rounded-2xl p-8 fade-in text-center">
-                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-5">
-                        <svg class="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            <div class="grid md:grid-cols-3 gap-5 mb-16">
+                <div class="glass rounded-2xl p-7 fade-in text-center group hover:border-red-500/20 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-red-500/15 transition-colors">
+                        <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
                     </div>
-                    <h3 class="text-lg font-semibold mb-3">Meeting notes vanish</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Important decisions are lost in hour-long recordings nobody rewatches. Action items slip through the cracks.</p>
+                    <h3 class="text-base font-semibold mb-2">Cloud-dependent AI</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Otter, Fireflies, Grain — they all stream your audio to external servers for processing. Your data isn't yours.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 fade-in text-center" style="transition-delay: 0.1s">
-                    <div class="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mx-auto mb-5">
-                        <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-1 text-center group hover:border-orange-500/20 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500/15 transition-colors">
+                        <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 class="text-lg font-semibold mb-3">Tasks across 5 apps</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Slack reminders, email flags, sticky notes, Jira tickets, calendar events. Your to-do list is everywhere and nowhere.</p>
+                    <h3 class="text-base font-semibold mb-2">Recurring subscriptions</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">$20-30/month per seat for transcription. You're paying to send your confidential meetings to someone else's GPU farm.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 fade-in text-center" style="transition-delay: 0.2s">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto mb-5">
-                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-2 text-center group hover:border-purple-500/20 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/15 transition-colors">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     </div>
-                    <h3 class="text-lg font-semibold mb-3">AI sends it all to the cloud</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Every AI assistant uploads your conversations, meetings, and tasks to someone else's servers. Your data isn't yours anymore.</p>
+                    <h3 class="text-base font-semibold mb-2">Fragmented tools</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Meeting recorder here, task board there, calendar somewhere else. Context is scattered across five different apps.</p>
                 </div>
             </div>
 
             <div class="text-center fade-in">
                 <p class="text-xl md:text-2xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-                    What if one assistant handled it all &mdash;<br class="hidden md:block">
-                    <span class="font-medium text-white">without ever leaving your machine?</span>
+                    What if you could record, transcribe, and search meetings &mdash;
+                    <span class="font-semibold text-white">without anything leaving your laptop?</span>
                 </p>
             </div>
         </div>
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- FEATURES -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FEATURES                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <section id="features" class="py-24 md:py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-kavi-cyan/3 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sage-400/[0.02] to-transparent"></div>
 
         <div class="relative max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                    Everything you need.<br>
-                    <span class="gradient-text">Nothing in the cloud.</span>
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">Capabilities</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Meeting intelligence &plus;<br>
+                    <span class="gradient-text">productivity suite.</span>
                 </h2>
-                <p class="text-slate-400 text-lg max-w-xl mx-auto">Four pillars of local-first productivity.</p>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">Everything runs locally. Your voice, transcripts, tasks, and calendar never leave your machine.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Voice -->
-                <div class="glass rounded-2xl p-8 fade-in group">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 rounded-xl bg-sage-400/10 flex items-center justify-center shrink-0 group-hover:bg-sage-400/20 transition-colors">
-                            <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+            <!-- Feature 1: Meeting Recording & Transcription — HERO FEATURE -->
+            <div class="glass-strong rounded-3xl p-8 md:p-10 mb-6 fade-in feature-card">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-sage-400/10 flex items-center justify-center feature-icon">
+                                <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                            </div>
+                            <span class="text-xs font-semibold text-sage-400 uppercase tracking-wider">Core Feature</span>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Voice-First Interface</h3>
-                            <p class="text-slate-400 leading-relaxed">Talk to KAVI like a colleague. Add tasks, check your calendar, search meetings &mdash; all by voice in under 600 milliseconds. Powered by Whisper, running locally.</p>
-                            <div class="mt-4 glass rounded-full px-4 py-2 inline-flex items-center gap-2 text-sm text-sage-400">
-                                <span class="w-2 h-2 bg-sage-400 rounded-full animate-pulse"></span>
-                                "Remind me to call Sarah at 3pm"
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Record &amp; Transcribe<br>Every Meeting</h3>
+                        <p class="text-slate-400 leading-relaxed mb-5">Capture mic, system audio, or both simultaneously. AI transcribes in smart chunks with overlap for accuracy. Get the full transcript, AI summary, action items, and key decisions — all processed on your CPU.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400 border border-white/[0.06]">Dual audio sources</span>
+                            <span class="px-3 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400 border border-white/[0.06]">AI transcription</span>
+                            <span class="px-3 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400 border border-white/[0.06]">Action items</span>
+                            <span class="px-3 py-1 rounded-full bg-white/[0.04] text-xs text-slate-400 border border-white/[0.06]">Key decisions</span>
+                        </div>
+                    </div>
+                    <!-- Mini demo: meeting processing pipeline -->
+                    <div class="bg-kavi-bg/60 rounded-xl p-5 border border-white/[0.04] font-mono text-xs">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-7 h-7 rounded-lg bg-sage-400/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="text-slate-400">Audio capture</div>
+                                    <div class="w-full bg-white/[0.04] rounded-full h-1 mt-1"><div class="bg-sage-400 h-1 rounded-full w-full"></div></div>
+                                </div>
+                                <span class="text-sage-400">&#10003;</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-7 h-7 rounded-lg bg-kavi-cyan/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="text-slate-400">AI transcription</div>
+                                    <div class="w-full bg-white/[0.04] rounded-full h-1 mt-1"><div class="bg-kavi-cyan h-1 rounded-full w-full"></div></div>
+                                </div>
+                                <span class="text-kavi-cyan">&#10003;</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-7 h-7 rounded-lg bg-kavi-purple/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-kavi-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="text-slate-400">LLM summarization</div>
+                                    <div class="w-full bg-white/[0.04] rounded-full h-1 mt-1"><div class="bg-kavi-purple h-1 rounded-full w-[85%]"></div></div>
+                                </div>
+                                <span class="text-kavi-gold animate-pulse">...</span>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-white/[0.04] text-[11px]">
+                                <div class="text-slate-600">Output:</div>
+                                <div class="text-sage-400 mt-1">&#x2192; Summary &middot; 3 action items &middot; 2 key decisions</div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Tasks -->
-                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.1s">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 rounded-xl bg-kavi-cyan/10 flex items-center justify-center shrink-0 group-hover:bg-kavi-cyan/20 transition-colors">
-                            <svg class="w-6 h-6 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Smart Task Management</h3>
-                            <p class="text-slate-400 leading-relaxed">Kanban boards that update from voice commands. Drag, drop, prioritize. KAVI extracts action items from meetings and turns them into tasks automatically.</p>
-                            <div class="mt-4 flex gap-2">
-                                <span class="px-3 py-1 rounded-full bg-kavi-cyan/10 text-kavi-cyan text-xs">To Do</span>
-                                <span class="px-3 py-1 rounded-full bg-kavi-gold/10 text-kavi-gold text-xs">In Progress</span>
-                                <span class="px-3 py-1 rounded-full bg-sage-400/10 text-sage-400 text-xs">Done</span>
-                            </div>
-                        </div>
+            <!-- Feature grid: 2x2 -->
+            <div class="grid md:grid-cols-2 gap-5">
+                <!-- Search -->
+                <div class="glass rounded-2xl p-7 fade-in feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-cyan/10 flex items-center justify-center mb-4 feature-icon group-hover:bg-kavi-cyan/15 transition-colors">
+                        <svg class="w-5 h-5 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Search Every Meeting</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Full-text search across all your meeting transcripts. Find "what we decided about the API redesign" in seconds, across months of recordings.</p>
+                    <div class="bg-kavi-bg/60 rounded-lg px-4 py-2.5 font-mono text-xs text-slate-500 border border-white/[0.04]">
+                        <span class="text-kavi-cyan">search</span> <span class="text-slate-600">&gt;</span> <span class="text-slate-400">pricing discussion Q4</span>
+                        <div class="text-[11px] text-slate-600 mt-1">3 results across 2 meetings</div>
+                    </div>
+                </div>
+
+                <!-- Kanban -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-1 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-gold/10 flex items-center justify-center mb-4 feature-icon group-hover:bg-kavi-gold/15 transition-colors">
+                        <svg class="w-5 h-5 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Kanban Task Board</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Drag-and-drop task management. Meeting action items become tasks automatically. Prioritize, tag, set due dates, and track by status.</p>
+                    <div class="flex gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-500/10 text-[11px] text-slate-400 border border-white/[0.04]">Todo</span>
+                        <span class="px-2.5 py-1 rounded-md bg-kavi-gold/10 text-[11px] text-kavi-gold border border-kavi-gold/20">In Progress</span>
+                        <span class="px-2.5 py-1 rounded-md bg-sage-400/10 text-[11px] text-sage-400 border border-sage-400/20">Done</span>
+                        <span class="px-2.5 py-1 rounded-md bg-red-400/10 text-[11px] text-red-400 border border-red-400/20">Blocked</span>
                     </div>
                 </div>
 
                 <!-- Calendar -->
-                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.2s">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 rounded-xl bg-kavi-gold/10 flex items-center justify-center shrink-0 group-hover:bg-kavi-gold/20 transition-colors">
-                            <svg class="w-6 h-6 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Calendar Integration</h3>
-                            <p class="text-slate-400 leading-relaxed">Google + Outlook in one unified view. Proactive meeting alerts via voice. KAVI tells you what's coming up so you never miss a commitment.</p>
-                            <div class="mt-4 text-sm text-slate-500 flex items-center gap-3">
-                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-400"></span>Google</span>
-                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-400"></span>Outlook</span>
-                                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sage-400"></span>Local</span>
-                            </div>
-                        </div>
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-2 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-purple/10 flex items-center justify-center mb-4 feature-icon group-hover:bg-kavi-purple/15 transition-colors">
+                        <svg class="w-5 h-5 text-kavi-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Unified Calendar</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Google Calendar + Outlook in one view. See today's events, search by keyword, get meeting links. Read-only OAuth — KAVI never modifies your calendar.</p>
+                    <div class="flex items-center gap-3 text-[11px] text-slate-500">
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-400"></span>Google</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-400"></span>Outlook</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sage-400"></span>Local</span>
                     </div>
                 </div>
 
-                <!-- Meetings -->
-                <div class="glass rounded-2xl p-8 fade-in group" style="transition-delay: 0.3s">
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 rounded-xl bg-purple-400/10 flex items-center justify-center shrink-0 group-hover:bg-purple-400/20 transition-colors">
-                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-2">Meeting Intelligence</h3>
-                            <p class="text-slate-400 leading-relaxed">Record meetings, get instant transcripts and AI summaries. Search across every conversation: "What did we decide about the API redesign?"</p>
-                            <div class="mt-4 glass rounded-lg px-4 py-2 text-sm text-slate-400">
-                                <span class="text-purple-400 font-medium">3 action items</span> extracted from standup
-                            </div>
+                <!-- Reports -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-3 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center mb-4 feature-icon group-hover:bg-emerald-400/15 transition-colors">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Auto Reports &amp; Email</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Daily and weekly productivity reports generated from your real activity. Tasks completed, meetings attended, productivity score. Email them to yourself or your team via SMTP.</p>
+                    <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Productivity score &middot; Accomplishments &middot; Upcoming deadlines</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- See all features link -->
+            <div class="text-center mt-10 fade-in">
+                <a href="features.html" class="inline-flex items-center gap-2 text-sage-400 hover:text-sage-500 font-medium text-sm transition-colors">
+                    Explore all features in detail
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- HOW IT WORKS                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 md:py-32 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">How it works</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Install. Record. Search.</h2>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">Three steps. No sign-up. No cloud account.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center fade-in">
+                    <div class="relative mx-auto mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-sage-400/10 border border-sage-400/20 flex items-center justify-center mx-auto">
+                            <span class="text-2xl font-bold text-sage-400 font-mono">1</span>
                         </div>
                     </div>
+                    <h3 class="text-lg font-semibold mb-2">Install KAVI</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Download for Windows, macOS, or Linux. No account creation, no cloud dependency. AI models download once and run forever.</p>
+                </div>
+
+                <div class="text-center fade-in fade-in-delay-1">
+                    <div class="relative mx-auto mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-kavi-cyan/10 border border-kavi-cyan/20 flex items-center justify-center mx-auto">
+                            <span class="text-2xl font-bold text-kavi-cyan font-mono">2</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Record Meetings</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Hit record. KAVI captures mic audio, system audio, or both. AI transcribes in real-time. Then extracts summaries, action items, and key decisions automatically.</p>
+                </div>
+
+                <div class="text-center fade-in fade-in-delay-2">
+                    <div class="relative mx-auto mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-kavi-gold/10 border border-kavi-gold/20 flex items-center justify-center mx-auto">
+                            <span class="text-2xl font-bold text-kavi-gold font-mono">3</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Search &amp; Act</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Search across every meeting you've ever had. Action items become tasks on your Kanban board. Weekly reports generate automatically.</p>
                 </div>
             </div>
         </div>
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- PRIVACY -->
-    <!-- ================================================================== -->
-    <section id="privacy" class="py-24 md:py-32 relative">
-        <div class="max-w-6xl mx-auto px-6">
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- USE CASES                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="use-cases" class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-kavi-purple/[0.02] to-transparent"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                    Your data never leaves your machine.<br>
-                    <span class="gradient-text">Period.</span>
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">Who it's for</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Built for professionals<br>who can't afford data leaks.
                 </h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Unlike every other AI assistant, KAVI processes everything on your CPU. Your meetings, tasks, and voice recordings stay on your hardware.</p>
             </div>
 
-            <!-- Data flow diagram -->
-            <div class="glass rounded-3xl p-8 md:p-12 mb-12 fade-in">
-                <div class="grid md:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <div class="w-16 h-16 rounded-2xl bg-sage-400/10 flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
-                        </div>
-                        <div class="text-sm font-semibold mb-1">Your Voice</div>
-                        <div class="text-xs text-slate-500">Captured locally via cpal</div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Consultants -->
+                <div class="glass rounded-2xl p-7 fade-in feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-sage-400/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     </div>
-
-                    <div>
-                        <div class="w-16 h-16 rounded-2xl bg-kavi-cyan/10 flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                        </div>
-                        <div class="text-sm font-semibold mb-1">Local AI Brain</div>
-                        <div class="text-xs text-slate-500">Whisper STT + Qwen LLM on CPU</div>
-                    </div>
-
-                    <div>
-                        <div class="w-16 h-16 rounded-2xl bg-kavi-gold/10 flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
-                        </div>
-                        <div class="text-sm font-semibold mb-1">Local Storage</div>
-                        <div class="text-xs text-slate-500">SQLite on your disk</div>
-                    </div>
-
-                    <div>
-                        <div class="w-16 h-16 rounded-2xl bg-purple-400/10 flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
-                        </div>
-                        <div class="text-sm font-semibold mb-1">Voice Output</div>
-                        <div class="text-xs text-slate-500">Piper TTS on your speakers</div>
-                    </div>
+                    <h3 class="text-base font-semibold mb-2">Consultants &amp; Freelancers</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Record NDA-bound client calls. Get summaries with action items. Search past conversations before follow-ups. Nothing leaves your laptop.</p>
                 </div>
 
-                <!-- Flow arrows -->
-                <div class="hidden md:flex items-center justify-center gap-4 my-6">
-                    <div class="flex-1 h-px bg-gradient-to-r from-sage-400/50 to-kavi-cyan/50"></div>
-                    <div class="flex-1 h-px bg-gradient-to-r from-kavi-cyan/50 to-kavi-gold/50"></div>
-                    <div class="flex-1 h-px bg-gradient-to-r from-kavi-gold/50 to-purple-400/50"></div>
+                <!-- Legal -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-1 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-cyan/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold mb-2">Legal Professionals</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Attorney-client privilege protected by architecture. Record depositions, consultations, and case discussions. Transcripts stay on your machine.</p>
                 </div>
 
-                <div class="text-center mt-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sage-400/10 text-sage-400 text-sm font-medium">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Everything above happens on YOUR machine
+                <!-- Engineering -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-2 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-gold/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
                     </div>
+                    <h3 class="text-base font-semibold mb-2">Engineering Teams</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Record standups and retros. Action items auto-populate the Kanban board. Search "what did we decide about the API" across months of meetings.</p>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-1 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-kavi-purple/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-kavi-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold mb-2">Healthcare</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">HIPAA-compatible by design — patient data never leaves the device. Record consultations, generate visit notes, and search medical discussions locally.</p>
+                </div>
+
+                <!-- Government -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-2 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold mb-2">Government &amp; Public Sector</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Data sovereignty guaranteed. No data crosses borders or touches external servers. Meets the strictest air-gap and compliance requirements.</p>
+                </div>
+
+                <!-- Researchers -->
+                <div class="glass rounded-2xl p-7 fade-in fade-in-delay-3 feature-card group">
+                    <div class="w-10 h-10 rounded-xl bg-rose-400/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold mb-2">Researchers</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">IRB-compliant by architecture. Record interviews and focus groups locally. No participant data touches external servers. Fully verifiable privacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PRICING                                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="pricing" class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-kavi-gold/[0.02] to-transparent"></div>
+
+        <div class="relative max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">Pricing</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Start free.<br>
+                    <span class="gradient-text">Upgrade when you need more.</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-xl mx-auto">No credit card required. No trials that expire. Just start recording your meetings.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- Free tier -->
+                <div class="glass rounded-2xl p-8 fade-in feature-card">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-1">Free</h3>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-4xl font-extrabold">$0</span>
+                            <span class="text-slate-500 text-sm">/ forever</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Perfect for getting started. Record up to 10 meetings per week with full AI features.</p>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-300"><strong>10 meetings per week</strong></span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">AI transcription &amp; summaries</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Action items &amp; key decisions</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Full-text meeting search</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Kanban task board</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Calendar sync (Google + Outlook)</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">100% local &mdash; nothing uploaded</span>
+                        </li>
+                    </ul>
+                    <a href="#waitlist" class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold text-slate-300 hover:text-white transition-all hover:bg-white/[0.06]">
+                        Get Started Free
+                    </a>
+                </div>
+
+                <!-- Pro tier -->
+                <div class="glass-strong rounded-2xl p-8 fade-in fade-in-delay-1 feature-card gradient-border">
+                    <div class="mb-6">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="text-lg font-semibold">Pro</h3>
+                            <span class="px-2 py-0.5 rounded-full bg-sage-400/10 text-[10px] text-sage-400 font-semibold uppercase tracking-wider">Popular</span>
+                        </div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-4xl font-extrabold">$7</span>
+                            <span class="text-slate-500 text-sm">/ month</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">For professionals who live in meetings. Unlimited recordings and all premium features.</p>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sage-400 font-semibold">Unlimited meetings</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-300">Everything in Free, plus:</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Daily &amp; weekly auto-reports</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Email report dispatch via SMTP</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Voice interface &amp; voice commands</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Multiple AI backend support</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-slate-400">Priority support</span>
+                        </li>
+                    </ul>
+                    <a href="#waitlist" class="block text-center bg-sage-400 text-kavi-bg px-6 py-3 rounded-full text-sm font-semibold hover:bg-sage-500 transition-all hover:scale-[1.02]">
+                        Join Waitlist for Pro
+                    </a>
+                </div>
+            </div>
+
+            <p class="text-center text-[13px] text-slate-600 mt-8 max-w-lg mx-auto">All processing happens locally on your machine. Your $7/month unlocks software features &mdash; not cloud compute. No data ever leaves your laptop.</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PRIVACY                                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="privacy" class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sage-400/[0.02] to-transparent"></div>
+
+        <div class="relative max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">Privacy</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Your data never leaves<br>your machine. <span class="gradient-text">Ever.</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Not "encrypted in transit." Not "anonymized." <strong class="text-white">Never transmitted at all.</strong></p>
+            </div>
+
+            <!-- Comparison -->
+            <div class="grid md:grid-cols-2 gap-5 mb-10 fade-in">
+                <!-- Others -->
+                <div class="glass rounded-2xl p-7 border-red-500/10">
+                    <h3 class="text-base font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-xs">&#10005;</span>
+                        Cloud meeting recorders
+                    </h3>
+                    <ul class="space-y-2.5 text-sm text-slate-500">
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">&#8226;</span> Audio streamed to external servers</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">&#8226;</span> Transcripts stored on cloud infrastructure</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">&#8226;</span> Vendor employees can access your data</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">&#8226;</span> Subject to subpoenas and data breaches</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">&#8226;</span> May train models on your meetings</li>
+                    </ul>
+                </div>
+
+                <!-- KAVI -->
+                <div class="glass rounded-2xl p-7 border-sage-400/20 gradient-border">
+                    <h3 class="text-base font-semibold mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-sage-400/10 flex items-center justify-center text-sage-400 text-xs">&#10003;</span>
+                        KAVI
+                    </h3>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li class="flex items-start gap-2"><span class="text-sage-400 mt-0.5">&#8226;</span> Audio captured and processed entirely on your device</li>
+                        <li class="flex items-start gap-2"><span class="text-sage-400 mt-0.5">&#8226;</span> Transcripts stored in a local database on your disk</li>
+                        <li class="flex items-start gap-2"><span class="text-sage-400 mt-0.5">&#8226;</span> No servers, no employees with access</li>
+                        <li class="flex items-start gap-2"><span class="text-sage-400 mt-0.5">&#8226;</span> Data exists only on your hardware</li>
+                        <li class="flex items-start gap-2"><span class="text-sage-400 mt-0.5">&#8226;</span> Verifiably private &mdash; nothing leaves your machine</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Trust signals -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
-                <div class="glass rounded-xl p-5 text-center">
-                    <div class="text-2xl mb-2">&#128274;</div>
-                    <div class="text-sm font-medium">No Telemetry</div>
-                    <div class="text-xs text-slate-500 mt-1">Zero data collection</div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 fade-in">
+                <div class="glass rounded-xl p-4 text-center">
+                    <div class="w-8 h-8 rounded-lg bg-sage-400/10 flex items-center justify-center mx-auto mb-2">
+                        <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <div class="text-xs font-medium">No Telemetry</div>
+                    <div class="text-[10px] text-slate-600 mt-0.5">Zero data collection</div>
                 </div>
-                <div class="glass rounded-xl p-5 text-center">
-                    <div class="text-2xl mb-2">&#9729;&#65039;</div>
-                    <div class="text-sm font-medium">No Cloud AI</div>
-                    <div class="text-xs text-slate-500 mt-1">Models run on your CPU</div>
+                <div class="glass rounded-xl p-4 text-center">
+                    <div class="w-8 h-8 rounded-lg bg-kavi-cyan/10 flex items-center justify-center mx-auto mb-2">
+                        <svg class="w-4 h-4 text-kavi-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <div class="text-xs font-medium">Local AI</div>
+                    <div class="text-[10px] text-slate-600 mt-0.5">Models on your CPU</div>
                 </div>
-                <div class="glass rounded-xl p-5 text-center">
-                    <div class="text-2xl mb-2">&#128065;&#65039;</div>
-                    <div class="text-sm font-medium">Fully Auditable</div>
-                    <div class="text-xs text-slate-500 mt-1">Open source code</div>
+                <div class="glass rounded-xl p-4 text-center">
+                    <div class="w-8 h-8 rounded-lg bg-kavi-gold/10 flex items-center justify-center mx-auto mb-2">
+                        <svg class="w-4 h-4 text-kavi-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    </div>
+                    <div class="text-xs font-medium">Verifiably Private</div>
+                    <div class="text-[10px] text-slate-600 mt-0.5">Runs on your hardware</div>
                 </div>
-                <div class="glass rounded-xl p-5 text-center">
-                    <div class="text-2xl mb-2">&#127760;</div>
-                    <div class="text-sm font-medium">Works Offline</div>
-                    <div class="text-xs text-slate-500 mt-1">No internet required*</div>
+                <div class="glass rounded-xl p-4 text-center">
+                    <div class="w-8 h-8 rounded-lg bg-kavi-purple/10 flex items-center justify-center mx-auto mb-2">
+                        <svg class="w-4 h-4 text-kavi-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div class="text-xs font-medium">Works Offline</div>
+                    <div class="text-[10px] text-slate-600 mt-0.5">No internet required*</div>
                 </div>
             </div>
-            <p class="text-center text-xs text-slate-600 mt-4">*Internet needed only for optional Google/Outlook calendar sync via OAuth.</p>
+            <p class="text-center text-[11px] text-slate-700 mt-3">*Internet needed only for optional Google/Outlook calendar sync via OAuth.</p>
         </div>
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- HOW IT WORKS -->
-    <!-- ================================================================== -->
-    <section class="py-24 md:py-32 relative">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Three steps to freedom</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center fade-in">
-                    <div class="w-16 h-16 rounded-full bg-sage-400/10 border-2 border-sage-400/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-sage-400">1</div>
-                    <h3 class="text-xl font-semibold mb-3">Install</h3>
-                    <p class="text-slate-400 leading-relaxed">Download KAVI for Windows, macOS, or Linux. No sign-up, no account, no cloud dependency. Just install and go.</p>
-                </div>
-
-                <div class="text-center fade-in" style="transition-delay: 0.1s">
-                    <div class="w-16 h-16 rounded-full bg-kavi-cyan/10 border-2 border-kavi-cyan/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-kavi-cyan">2</div>
-                    <h3 class="text-xl font-semibold mb-3">Speak</h3>
-                    <p class="text-slate-400 leading-relaxed">Talk naturally. "Add a task to review the budget." "What's on my calendar tomorrow?" KAVI understands and acts.</p>
-                </div>
-
-                <div class="text-center fade-in" style="transition-delay: 0.2s">
-                    <div class="w-16 h-16 rounded-full bg-kavi-gold/10 border-2 border-kavi-gold/30 flex items-center justify-center mx-auto mb-6 text-2xl font-bold text-kavi-gold">3</div>
-                    <h3 class="text-xl font-semibold mb-3">Relax</h3>
-                    <p class="text-slate-400 leading-relaxed">Meetings get summarized, action items tracked, calendars synced, reports generated. All locally. All automatically.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ================================================================== -->
-    <!-- WHO IT'S FOR -->
-    <!-- ================================================================== -->
-    <section class="py-24 md:py-32 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sage-400/3 to-transparent"></div>
-
-        <div class="relative max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Built for how you work</h2>
-                <p class="text-slate-400 text-lg">KAVI adapts to your role with persona-specific intelligence.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-sage-400/30 transition-all cursor-default">
-                    <div class="text-3xl mb-4">&#128187;</div>
-                    <h3 class="font-semibold mb-2">Developers</h3>
-                    <p class="text-slate-400 text-sm">Track bugs, manage sprints, search standups by voice</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-kavi-cyan/30 transition-all cursor-default" style="transition-delay: 0.1s">
-                    <div class="text-3xl mb-4">&#128200;</div>
-                    <h3 class="font-semibold mb-2">Managers</h3>
-                    <p class="text-slate-400 text-sm">Team status, meeting summaries, automated weekly reports</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-kavi-gold/30 transition-all cursor-default" style="transition-delay: 0.2s">
-                    <div class="text-3xl mb-4">&#127793;</div>
-                    <h3 class="font-semibold mb-2">Entrepreneurs</h3>
-                    <p class="text-slate-400 text-sm">Client meetings, task management, calendar in one place</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 text-center fade-in hover:border-purple-400/30 transition-all cursor-default" style="transition-delay: 0.3s">
-                    <div class="text-3xl mb-4">&#128272;</div>
-                    <h3 class="font-semibold mb-2">Privacy-First Pros</h3>
-                    <p class="text-slate-400 text-sm">Lawyers, therapists, researchers &mdash; where confidentiality is non-negotiable</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ================================================================== -->
-    <!-- WAITLIST / PRICING VALIDATION -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- WAITLIST                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <section id="waitlist" class="py-24 md:py-32 relative">
         <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-12 fade-in">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-sage-400 mb-6">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="text-center mb-10 fade-in">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[13px] text-sage-400 mb-6">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     Beta launching Q2 2026
                 </div>
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6" id="pricing">
-                    Help us build <span class="gradient-text">KAVI</span> for you
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                    Get early access to <span class="gradient-text">KAVI</span>
                 </h2>
-                <p class="text-slate-400 text-lg max-w-xl mx-auto">
-                    We're building KAVI in public. Join the waitlist to get early access and help shape the product &mdash; including pricing.
+                <p class="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+                    Join the waitlist to get first access when we launch. Free tier included &mdash; no credit card required.
                 </p>
             </div>
 
-            <!-- Tally.so Form Embed -->
-            <div class="glass rounded-3xl p-2 fade-in">
+            <!-- Tally.so Form -->
+            <div class="glass-strong rounded-3xl p-2 fade-in">
                 <div class="bg-kavi-surface rounded-2xl p-8 min-h-[500px] flex items-center justify-center">
                     <iframe
                         data-tally-src="https://tally.so/embed/XxWDY4?alignLeft=1&hideTitle=1&dynamicHeight=1"
@@ -584,73 +902,64 @@
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- FAQ -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FAQ                                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <section id="faq" class="py-24 md:py-32 relative">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Frequently asked questions</h2>
+                <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">FAQ</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Questions &amp; answers</h2>
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <details class="glass rounded-xl group fade-in">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                    <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
                         Is KAVI really 100% local?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        Yes. All AI processing (voice recognition, language model, text-to-speech) runs on your CPU. The only network traffic is optional OAuth for Google/Outlook calendar sync &mdash; and that only sends calendar data, never your voice, tasks, or meetings.
+                    <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        Yes. All AI processing — voice recognition, language understanding, and text-to-speech — runs entirely on your CPU. The only network traffic is optional OAuth for Google/Outlook calendar sync. Nothing else ever leaves your machine.
                     </div>
                 </details>
 
-                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.05s">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                <details class="glass rounded-xl group fade-in fade-in-delay-1">
+                    <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
                         What are the system requirements?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        Any modern laptop with 4GB+ RAM. No GPU required &mdash; KAVI uses 4-bit quantized models optimized for CPU inference. Total memory usage stays under 1.5GB with all features active.
+                    <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        Any modern laptop with 4GB+ RAM. No GPU required — KAVI uses lightweight AI models optimized for CPU inference. Total memory stays under 1.5GB. Works on Windows, macOS, and Linux.
                     </div>
                 </details>
 
-                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.1s">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
-                        Does it work on Windows, Mac, and Linux?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                <details class="glass rounded-xl group fade-in fade-in-delay-2">
+                    <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
+                        How does transcription work without internet?
+                        <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        Yes. KAVI is built with Tauri v2, which compiles native binaries for all three platforms. System audio capture works via WASAPI (Windows), ScreenCaptureKit (macOS), and PulseAudio (Linux).
+                    <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        KAVI bundles a lightweight speech recognition model that runs entirely on your CPU. Audio is processed in smart segments for accuracy, transcribed locally, then passed to the AI for summarization. No internet connection needed for any of this.
                     </div>
                 </details>
 
-                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.15s">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
-                        Is KAVI open source?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                <details class="glass rounded-xl group fade-in fade-in-delay-3">
+                    <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
+                        What's the difference between Free and Pro?
+                        <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        The core engine will be open source so anyone can audit the code and verify that your data stays local. We believe transparency is essential for a privacy-first product.
+                    <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        The Free plan gives you up to 10 meetings per week with full AI transcription, summaries, action items, search, Kanban board, and calendar sync. Pro ($7/month) unlocks unlimited meetings, automated daily/weekly reports, email dispatch, voice interface, and priority support.
                     </div>
                 </details>
 
-                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.2s">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
+                <details class="glass rounded-xl group fade-in fade-in-delay-4">
+                    <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
                         When will KAVI be available?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        We're targeting a beta launch in Q2 2026. Waitlist members get first access. Join above to be among the first to try KAVI.
-                    </div>
-                </details>
-
-                <details class="glass rounded-xl group fade-in" style="transition-delay: 0.25s">
-                    <summary class="p-6 cursor-pointer flex items-center justify-between text-lg font-medium hover:text-sage-400 transition-colors">
-                        How does voice recognition work without internet?
-                        <svg class="w-5 h-5 text-slate-400 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                    </summary>
-                    <div class="px-6 pb-6 text-slate-400 leading-relaxed">
-                        KAVI uses Whisper tiny.en, a speech recognition model that runs entirely on CPU. It's bundled with the app &mdash; no internet connection needed for any AI features. The model is only 75MB and processes speech in real-time.
+                    <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
+                        Beta launching Q2 2026. Waitlist members get first access. Join the waitlist above to be among the first to try KAVI.
                     </div>
                 </details>
             </div>
@@ -658,34 +967,51 @@
     </section>
 
 
-    <!-- ================================================================== -->
-    <!-- FOOTER -->
-    <!-- ================================================================== -->
-    <footer class="border-t border-white/5 py-12">
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FINAL CTA                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-24 md:py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-sage-400/[0.03] to-transparent"></div>
+        <div class="relative max-w-3xl mx-auto px-6 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                Your meetings deserve better<br>than someone else's server.
+            </h2>
+            <p class="text-slate-400 text-lg mb-8 max-w-lg mx-auto">Join the waitlist. Keep your meetings private.</p>
+            <a href="#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-lg hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
+                Join the Waitlist
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FOOTER                                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <footer class="border-t border-white/[0.04] py-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-3">
-                    <img src="assets/kavi-logo.svg" alt="KAVI" class="w-6 h-6 rounded-md">
-                    <span class="text-sm text-slate-400">KAVI &mdash; The Digital Sage</span>
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/kavi-logo.svg" alt="" class="w-5 h-5 rounded">
+                    <span class="text-sm text-slate-500">KAVI &mdash; Offline Meeting Intelligence</span>
                 </div>
 
-                <div class="flex items-center gap-6 text-sm text-slate-500">
-                    <a href="https://github.com" class="hover:text-white transition-colors">GitHub</a>
+                <div class="flex items-center gap-6 text-[13px] text-slate-600">
+                    <a href="features.html" class="hover:text-white transition-colors">Features</a>
                     <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="mailto:hello@kavi.app" class="hover:text-white transition-colors">Contact</a>
                 </div>
 
-                <div class="text-xs text-slate-600">
-                    Built with Rust. Powered by local AI.
+                <div class="text-[11px] text-slate-700">
+                    Powered by local AI &middot; 100% private
                 </div>
             </div>
         </div>
     </footer>
 
 
-    <!-- ================================================================== -->
-    <!-- SCROLL ANIMATION SCRIPT -->
-    <!-- ================================================================== -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- SCRIPTS                                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
     <script>
         // Intersection Observer for fade-in animations
         const observer = new IntersectionObserver((entries) => {
@@ -694,7 +1020,7 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
@@ -709,7 +1035,17 @@
             });
         });
 
-        // Mobile nav: close on link click (future hamburger menu)
+        // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-kavi-bg/90');
+                navbar.classList.remove('bg-kavi-bg/70');
+            } else {
+                navbar.classList.remove('bg-kavi-bg/90');
+                navbar.classList.add('bg-kavi-bg/70');
+            }
+        }, { passive: true });
     </script>
 
 </body>
