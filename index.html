@@ -188,37 +188,37 @@
     <!-- ═══════════════════════════════════════════════════════════════════ -->
     <!-- HERO                                                               -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+    <section class="relative min-h-screen flex items-start md:items-center pt-16 overflow-hidden">
         <!-- Background effects -->
         <div class="absolute inset-0">
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sage-400/[0.07] rounded-full blur-[160px]"></div>
             <div class="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-kavi-cyan/[0.04] rounded-full blur-[120px]"></div>
         </div>
 
-        <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+        <div class="relative max-w-7xl mx-auto px-6 py-8 sm:py-14 md:py-20 lg:py-28">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <!-- Left: Copy -->
                 <div>
                     <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[13px] text-slate-300 mb-8">
-                        <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse"></span>
-                        Beta launching Q2 2026 &middot; No credit card required
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[12px] sm:text-[13px] text-slate-300 mb-6 max-w-full">
+                        <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse shrink-0"></span>
+                        <span>Beta launching Q2 2026 &middot; No credit card required</span>
                     </div>
 
                     <!-- Headline -->
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                    <h1 class="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-5">
                         Offline Meeting<br>
                         Intelligence.<br>
                         <span class="gradient-text">Nothing Uploaded.</span>
                     </h1>
 
                     <!-- Subheadline -->
-                    <p class="text-lg text-slate-400 max-w-lg leading-relaxed mb-8">
+                    <p class="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed mb-6">
                         Record, transcribe, and extract insights from every meeting — running 100% on your laptop's CPU. No cloud. No GPU. Free for up to 10 meetings per week.
                     </p>
 
                     <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 mb-10">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 mb-8">
                         <a href="#waitlist" class="text-center bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
                             Join the Waitlist
                         </a>
@@ -347,8 +347,9 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <p class="text-sm font-medium text-sage-400 uppercase tracking-widest mb-4">The problem</p>
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
-                    Every meeting recorder<br>sends your data to the cloud.
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
+                    Every meeting recorder<br class="hidden sm:inline">
+                    <span class="sm:hidden"> </span>sends your data to the cloud.
                 </h2>
                 <p class="text-slate-400 text-lg max-w-xl mx-auto">Your NDA calls, client strategies, legal consultations — uploaded to servers you don't control.</p>
             </div>
@@ -1054,7 +1055,7 @@
 
             <!-- Bottom row: legal links + copyright -->
             <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
-                <div class="flex items-center gap-6 text-[12px] text-slate-600">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-[12px] text-slate-600">
                     <a href="features.html" class="hover:text-white transition-colors">Feature Docs</a>
                     <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
