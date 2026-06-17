@@ -13,6 +13,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kavimeetings.com/blog/</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kavimeetings.com/blog/where-do-meeting-recordings-go.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kavimeetings.com/blog/your-meetings-deserve-privacy.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kavimeetings.com/blog/meeting-recorder-for-consultants.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kavimeetings.com/blog/what-is-kavi.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kavimeetings.com/blog/getting-started-with-kavi.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kavimeetings.com/privacy.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>

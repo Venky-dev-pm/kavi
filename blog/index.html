@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — KAVI | Offline Meeting Intelligence</title>
+    <meta name="description" content="Insights on professional meeting privacy, local AI transcription, and how to keep your most confidential conversations off the cloud. From the team at KAVI.">
+    <meta name="keywords" content="kavi blog, meeting privacy, offline meeting recorder, local AI transcription, private meeting notes, meeting recording professionals">
+    <link rel="canonical" href="https://kavimeetings.com/blog/">
+
+    <meta property="og:title" content="KAVI Blog — Meeting Privacy & Offline AI Intelligence">
+    <meta property="og:description" content="Insights on professional meeting privacy, local AI transcription, and keeping your confidential conversations off the cloud.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kavimeetings.com/blog/">
+    <meta property="og:image" content="https://kavimeetings.com/assets/og-image.png">
+    <meta property="og:site_name" content="KAVI">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KAVI Blog — Meeting Privacy & Offline AI Intelligence">
+    <meta name="twitter:description" content="Insights on professional meeting privacy and local AI transcription.">
+    <meta name="twitter:image" content="https://kavimeetings.com/assets/og-image.png">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }, colors: { sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' }, kavi: { cyan: '#38BDF8', gold: '#FBBF24', purple: '#a78bfa', bg: '#050508', surface: '#0f172a', card: '#131c2e', border: 'rgba(255,255,255,0.06)' } } } }
+        }
+    </script>
+    <style>
+        .fade-in { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-delay-1 { transition-delay: 0.08s; }
+        .fade-in-delay-2 { transition-delay: 0.16s; }
+        .fade-in-delay-3 { transition-delay: 0.24s; }
+        .fade-in-delay-4 { transition-delay: 0.32s; }
+        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(135deg, #4ade80, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+        .mobile-menu.open { max-height: 320px; }
+        body::before { content: ''; position: fixed; inset: 0; opacity: 0.015; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050508; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        .post-card { transition: all 0.3s ease; }
+        .post-card:hover { transform: translateY(-3px); }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "KAVI Blog",
+      "description": "Insights on professional meeting privacy, local AI transcription, and offline meeting tools.",
+      "url": "https://kavimeetings.com/blog/",
+      "publisher": { "@type": "Organization", "name": "KAVI", "url": "https://kavimeetings.com", "logo": { "@type": "ImageObject", "url": "https://kavimeetings.com/assets/kavi-logo.svg" } }
+    }
+    </script>
+</head>
+
+<body class="bg-kavi-bg text-slate-50 font-sans antialiased overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/70 border-b border-white/[0.04]" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
+                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300"><img src="../assets/kavi-logo.svg" alt="" class="w-full h-full"></div>
+                <span class="text-lg font-bold tracking-tight">KAVI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-[13px] text-slate-400 font-medium">
+                <a href="../#features" class="hover:text-white transition-colors duration-200">Features</a>
+                <a href="../#use-cases" class="hover:text-white transition-colors duration-200">Use Cases</a>
+                <a href="../#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+                <a href="index.html" class="text-white transition-colors duration-200">Blog</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="../#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">Join Waitlist</a>
+                <button class="md:hidden p-2 text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-nav" class="mobile-menu md:hidden border-t border-white/[0.04] bg-kavi-bg/95 backdrop-blur-xl">
+            <div class="px-6 py-4 space-y-3 text-sm">
+                <a href="../#features" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Features</a>
+                <a href="../#pricing" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Pricing</a>
+                <a href="index.html" class="block text-white">Blog</a>
+                <a href="../#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full mt-2">Join Waitlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pt-28 pb-16 relative">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-sage-400/[0.05] rounded-full blur-[140px]"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto px-6 text-center fade-in">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[12px] text-slate-400 mb-6">
+                <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse"></span>
+                Meeting privacy &middot; Local AI &middot; Professional workflows
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+                The <span class="gradient-text">KAVI</span> Blog
+            </h1>
+            <p class="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+                Insights on professional meeting privacy, local AI, and why your most sensitive conversations deserve better than someone else's server.
+            </p>
+        </div>
+    </section>
+
+    <!-- POSTS -->
+    <section class="pb-24">
+        <div class="max-w-5xl mx-auto px-6">
+
+            <!-- Featured post -->
+            <a href="where-do-meeting-recordings-go.html" class="block glass rounded-2xl p-7 md:p-10 mb-6 post-card fade-in group">
+                <div class="grid md:grid-cols-[1fr_auto] gap-6 items-start">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sage-400/10 border border-sage-400/20 text-[11px] text-sage-400 font-semibold uppercase tracking-wider">Privacy</div>
+                            <span class="text-[12px] text-slate-600">7 min read</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-sage-400 transition-colors mb-3 leading-tight">
+                            Where Do Your Meeting Recordings Actually Go?
+                        </h2>
+                        <p class="text-slate-400 leading-relaxed mb-4 max-w-2xl">Most professionals assume their meeting recordings are private. They're not. Here's what actually happens to your audio when you record a call on a cloud meeting tool — and the simple test that reveals the truth.</p>
+                        <div class="flex items-center gap-3 text-[13px] text-slate-600">
+                            <span>KAVI Team</span>
+                            <span>·</span>
+                            <time datetime="2026-06-17">June 17, 2026</time>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex items-center justify-center w-14 h-14 rounded-2xl bg-sage-400/10 border border-sage-400/20 shrink-0 mt-2 group-hover:bg-sage-400/15 transition-colors">
+                        <svg class="w-6 h-6 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Grid of remaining posts -->
+            <div class="grid md:grid-cols-2 gap-5">
+
+                <a href="your-meetings-deserve-privacy.html" class="glass rounded-2xl p-6 post-card fade-in fade-in-delay-1 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sage-400/10 border border-sage-400/20 text-[11px] text-sage-400 font-semibold uppercase tracking-wider">Privacy</div>
+                        <span class="text-[12px] text-slate-600">6 min read</span>
+                    </div>
+                    <h2 class="text-lg font-bold text-white group-hover:text-sage-400 transition-colors mb-2 leading-snug">
+                        Your Meetings Deserve Privacy. Here's Why Most Tools Don't Provide It.
+                    </h2>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">The difference between a privacy promise and a privacy fact — and why it matters for the trust your clients place in you.</p>
+                    <div class="flex items-center gap-3 text-[12px] text-slate-600">
+                        <span>KAVI Team</span><span>·</span><time datetime="2026-06-17">June 17, 2026</time>
+                    </div>
+                </a>
+
+                <a href="meeting-recorder-for-consultants.html" class="glass rounded-2xl p-6 post-card fade-in fade-in-delay-2 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-kavi-gold/10 border border-kavi-gold/20 text-[11px] text-kavi-gold font-semibold uppercase tracking-wider">Use Cases</div>
+                        <span class="text-[12px] text-slate-600">7 min read</span>
+                    </div>
+                    <h2 class="text-lg font-bold text-white group-hover:text-sage-400 transition-colors mb-2 leading-snug">
+                        How Management Consultants Use KAVI to Protect Client Confidentiality
+                    </h2>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">Your NDA covers your behavior. It doesn't extend to your recording tool's infrastructure. Here's how to close that gap.</p>
+                    <div class="flex items-center gap-3 text-[12px] text-slate-600">
+                        <span>KAVI Team</span><span>·</span><time datetime="2026-06-17">June 17, 2026</time>
+                    </div>
+                </a>
+
+                <a href="what-is-kavi.html" class="glass rounded-2xl p-6 post-card fade-in fade-in-delay-3 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-kavi-cyan/10 border border-kavi-cyan/20 text-[11px] text-kavi-cyan font-semibold uppercase tracking-wider">Product</div>
+                        <span class="text-[12px] text-slate-600">6 min read</span>
+                    </div>
+                    <h2 class="text-lg font-bold text-white group-hover:text-sage-400 transition-colors mb-2 leading-snug">
+                        What Is KAVI? A Meeting Tool That Never Touches the Cloud
+                    </h2>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">Everything KAVI does — recording, transcription, summaries, tasks, calendar — and why none of it needs the internet.</p>
+                    <div class="flex items-center gap-3 text-[12px] text-slate-600">
+                        <span>KAVI Team</span><span>·</span><time datetime="2026-06-17">June 17, 2026</time>
+                    </div>
+                </a>
+
+                <a href="getting-started-with-kavi.html" class="glass rounded-2xl p-6 post-card fade-in fade-in-delay-4 group">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-kavi-purple/10 border border-kavi-purple/20 text-[11px] text-kavi-purple font-semibold uppercase tracking-wider">Guide</div>
+                        <span class="text-[12px] text-slate-600">5 min read</span>
+                    </div>
+                    <h2 class="text-lg font-bold text-white group-hover:text-sage-400 transition-colors mb-2 leading-snug">
+                        Getting Started With KAVI: Your First 10 Minutes
+                    </h2>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-4">Download, record your first meeting, and run the wifi test that proves the privacy claim is real — step by step.</p>
+                    <div class="flex items-center gap-3 text-[12px] text-slate-600">
+                        <span>KAVI Team</span><span>·</span><time datetime="2026-06-17">June 17, 2026</time>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 relative border-t border-white/[0.04]">
+        <div class="absolute inset-0 bg-gradient-to-t from-sage-400/[0.03] to-transparent"></div>
+        <div class="relative max-w-3xl mx-auto px-6 text-center fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-white">Ready to keep your meetings private?</h2>
+            <p class="text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">KAVI records, transcribes, and summarizes meetings 100% on your laptop. Join the waitlist for early access.</p>
+            <a href="../#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold px-8 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03]">Join the Waitlist</a>
+            <p class="text-[12px] text-slate-600 mt-4">Free for 10 meetings/week. No credit card. No cloud.</p>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/[0.04] pt-10 pb-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                <div class="flex items-center gap-2.5">
+                    <img src="../assets/kavi-logo.svg" alt="" class="w-5 h-5 rounded">
+                    <div><span class="text-sm font-semibold text-slate-300">KAVI</span><span class="text-sm text-slate-600 ml-2">Your meetings. Your machine. Your data.</span></div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://twitter.com/kaviapp" aria-label="X" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://github.com/kaviapp" aria-label="GitHub" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                    <a href="https://linkedin.com/company/kaviapp" aria-label="LinkedIn" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-[12px] text-slate-600">
+                    <a href="../features.html" class="hover:text-white transition-colors">Feature Docs</a>
+                    <a href="index.html" class="hover:text-white transition-colors">Blog</a>
+                    <a href="../privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="../terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="mailto:hello@kavimeetings.com" class="hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center gap-3 text-[12px] text-slate-700">
+                    <span class="px-2 py-0.5 rounded-full border border-white/[0.06] text-[11px] text-slate-500">Beta</span>
+                    <span>&copy; 2026 KAVI. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('bg-kavi-bg/90', window.scrollY > 20);
+            navbar.classList.toggle('bg-kavi-bg/70', window.scrollY <= 20);
+        }, { passive: true });
+    </script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "64ef29a4621a4dfcaefad4a2cda24959"}'></script>
+</body>
+</html>

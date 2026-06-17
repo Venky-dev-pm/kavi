@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Do Your Meeting Recordings Actually Go? | KAVI Blog</title>
+    <meta name="description" content="Most professionals assume their meeting recordings are private. They're not. Here's what actually happens to your audio when you record a call on a cloud meeting tool.">
+    <meta name="keywords" content="where do meeting recordings go, private meeting recorder, meeting recording privacy, cloud meeting tool data, offline meeting recorder, local meeting transcription">
+    <link rel="canonical" href="https://kavimeetings.com/blog/where-do-meeting-recordings-go.html">
+
+    <meta property="og:title" content="Where Do Your Meeting Recordings Actually Go?">
+    <meta property="og:description" content="Most professionals assume their meeting recordings are private. They're not. Here's what actually happens to your audio.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kavimeetings.com/blog/where-do-meeting-recordings-go.html">
+    <meta property="og:image" content="https://kavimeetings.com/assets/og-image.png">
+    <meta property="og:site_name" content="KAVI">
+    <meta property="article:published_time" content="2026-06-17">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Where Do Your Meeting Recordings Actually Go?">
+    <meta name="twitter:description" content="Most professionals assume their meeting recordings are private. They're not.">
+    <meta name="twitter:image" content="https://kavimeetings.com/assets/og-image.png">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
+                        kavi: { cyan: '#38BDF8', gold: '#FBBF24', purple: '#a78bfa', bg: '#050508', surface: '#0f172a', card: '#131c2e', border: 'rgba(255,255,255,0.06)' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .fade-in { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(135deg, #4ade80, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-border { position: relative; }
+        .gradient-border::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(74,222,128,0.3), rgba(56,189,248,0.3)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+        .mobile-menu.open { max-height: 320px; }
+        body::before { content: ''; position: fixed; inset: 0; opacity: 0.015; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050508; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        .prose p { color: #94a3b8; line-height: 1.85; margin-bottom: 1.5rem; font-size: 1.0625rem; }
+        .prose h2 { color: #f1f5f9; font-size: 1.5rem; font-weight: 700; margin-top: 2.75rem; margin-bottom: 1rem; line-height: 1.3; }
+        .prose h3 { color: #e2e8f0; font-size: 1.125rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose strong { color: #f1f5f9; font-weight: 600; }
+        .prose ul { margin-bottom: 1.5rem; padding-left: 0; list-style: none; }
+        .prose ul li { color: #94a3b8; padding-left: 1.5rem; position: relative; margin-bottom: 0.625rem; line-height: 1.75; font-size: 1.0625rem; }
+        .prose ul li::before { content: ''; position: absolute; left: 0; top: 0.68em; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
+        .prose ol { padding-left: 0; list-style: none; counter-reset: list; margin-bottom: 1.5rem; }
+        .prose ol li { color: #94a3b8; padding-left: 2.25rem; position: relative; margin-bottom: 0.75rem; line-height: 1.75; font-size: 1.0625rem; counter-increment: list; }
+        .prose ol li::before { content: counter(list); position: absolute; left: 0; top: 0.1em; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #4ade80; font-weight: 700; text-align: center; line-height: 1.5rem; }
+        .prose hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 2.5rem 0; }
+        .prose em { color: #cbd5e1; font-style: italic; }
+        .prose a { color: #4ade80; text-decoration: underline; text-underline-offset: 3px; }
+        .prose a:hover { color: #22c55e; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Where Do Your Meeting Recordings Actually Go?",
+      "description": "Most professionals assume their meeting recordings are private. They're not. Here's what actually happens to your audio when you record a call on a cloud meeting tool.",
+      "datePublished": "2026-06-17",
+      "dateModified": "2026-06-17",
+      "author": { "@type": "Organization", "name": "KAVI", "url": "https://kavimeetings.com" },
+      "publisher": { "@type": "Organization", "name": "KAVI", "url": "https://kavimeetings.com", "logo": { "@type": "ImageObject", "url": "https://kavimeetings.com/assets/kavi-logo.svg" } },
+      "image": "https://kavimeetings.com/assets/og-image.png",
+      "url": "https://kavimeetings.com/blog/where-do-meeting-recordings-go.html",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kavimeetings.com/blog/where-do-meeting-recordings-go.html" }
+    }
+    </script>
+</head>
+
+<body class="bg-kavi-bg text-slate-50 font-sans antialiased overflow-x-hidden">
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/70 border-b border-white/[0.04]" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="../" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
+                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                    <img src="../assets/kavi-logo.svg" alt="" class="w-full h-full">
+                </div>
+                <span class="text-lg font-bold tracking-tight">KAVI</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-[13px] text-slate-400 font-medium">
+                <a href="../#features" class="hover:text-white transition-colors duration-200">Features</a>
+                <a href="../#use-cases" class="hover:text-white transition-colors duration-200">Use Cases</a>
+                <a href="../#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+                <a href="index.html" class="text-white transition-colors duration-200">Blog</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="../#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">Join Waitlist</a>
+                <button class="md:hidden p-2 text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-nav" class="mobile-menu md:hidden border-t border-white/[0.04] bg-kavi-bg/95 backdrop-blur-xl">
+            <div class="px-6 py-4 space-y-3 text-sm">
+                <a href="../#features" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Features</a>
+                <a href="../#use-cases" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Use Cases</a>
+                <a href="../#pricing" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Pricing</a>
+                <a href="index.html" class="block text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Blog</a>
+                <a href="../#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full mt-2">Join Waitlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ARTICLE HERO -->
+    <section class="pt-28 pb-12 relative">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sage-400/[0.05] rounded-full blur-[120px]"></div>
+        </div>
+        <div class="relative max-w-3xl mx-auto px-6 fade-in">
+            <nav class="flex items-center gap-2 text-[13px] text-slate-600 mb-6" aria-label="Breadcrumb">
+                <a href="../" class="hover:text-slate-400 transition-colors">Home</a>
+                <span>/</span>
+                <a href="index.html" class="hover:text-slate-400 transition-colors">Blog</a>
+                <span>/</span>
+                <span class="text-slate-500">Where Do Recordings Go</span>
+            </nav>
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-sage-400/10 border border-sage-400/20 text-[12px] text-sage-400 font-semibold uppercase tracking-wider mb-5">
+                Privacy
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold tracking-tight leading-tight mb-5 text-white">
+                Where Do Your Meeting Recordings Actually Go?
+            </h1>
+            <div class="flex flex-wrap items-center gap-3 text-[13px] text-slate-500">
+                <span>KAVI Team</span>
+                <span class="text-slate-700">·</span>
+                <time datetime="2026-06-17">June 17, 2026</time>
+                <span class="text-slate-700">·</span>
+                <span>7 min read</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="border-t border-white/[0.06]"></div>
+    </div>
+
+    <!-- ARTICLE BODY -->
+    <article class="max-w-3xl mx-auto px-6 py-12 prose fade-in">
+
+        <p>Most professionals who use a meeting recorder have never asked this question. They press record, they get a transcript, they feel satisfied. The workflow works. The tool is popular. Someone at their company or in their network recommended it.</p>
+
+        <p>The question of where the audio goes — what happens between "press record" and "transcript delivered" — doesn't come up.</p>
+
+        <p>Until it does.</p>
+
+        <h2>The Standard Architecture</h2>
+
+        <p>Here's how the vast majority of cloud meeting tools work:</p>
+
+        <ol>
+            <li>Your device captures audio locally</li>
+            <li>That audio is transmitted to the tool's servers</li>
+            <li>The transcription happens there, using the tool's cloud infrastructure</li>
+            <li>The transcript is sent back to your interface</li>
+            <li>The recording and transcript are stored on their servers</li>
+            <li>You access them through your account</li>
+        </ol>
+
+        <p>This is straightforward, efficient, and it's how most software-as-a-service tools are built. Cloud processing is fast. Cloud storage scales. It's the obvious engineering choice.</p>
+
+        <p>It also means that every meeting you record through one of these tools is transmitted to and stored on infrastructure you don't own or control.</p>
+
+        <h2>What the Terms of Service Say</h2>
+
+        <p>This isn't hidden. The terms of service for major meeting recording and transcription platforms disclose how recordings are handled. The language varies, but the patterns are consistent:</p>
+
+        <p><strong>Storage:</strong> Your recordings are stored on their servers. Duration varies — often until you delete them, with a grace period after deletion (typically 30–90 days for backup retention).</p>
+
+        <p><strong>Processing:</strong> Recordings are processed by their systems, which may include third-party contractors. "Quality assurance," "service improvement," and "AI training" are common stated purposes for this processing.</p>
+
+        <p><strong>Access:</strong> Employees or contractors may have access to recordings for specified purposes. This is standard for cloud services and doesn't indicate bad intent — but it means humans other than you can technically access your audio.</p>
+
+        <p><strong>Deletion:</strong> When you delete a recording from your account, it's removed from your view. Whether it's immediately deleted from all servers and backups is a different question, governed by their data retention policies.</p>
+
+        <p>None of this is unusual for a cloud service. All of it is worth knowing if your meetings contain confidential information.</p>
+
+        <h2>The Professional Reality</h2>
+
+        <p>For the average person recording a team standup, none of this is particularly concerning. The content is low-stakes. The risk is theoretical.</p>
+
+        <p>For professionals in certain fields, the calculation is different.</p>
+
+        <p><strong>A consultant recording a client strategy session</strong> is capturing information that could — in the wrong hands — affect a business outcome. The client signed an NDA with the consultant. They didn't sign anything with the consultant's recording service.</p>
+
+        <p><strong>A lawyer documenting a client consultation</strong> is recording content protected by attorney-client privilege. There are ongoing legal discussions about whether voluntarily transmitting privileged communications to a third-party cloud service has any effect on that privilege. Most courts haven't addressed it directly. Being the test case is not appealing.</p>
+
+        <p><strong>A healthcare professional transcribing patient consultations</strong> is handling protected health information under HIPAA. The regulations are clear about how PHI must be handled when transmitted to third parties. A Business Associate Agreement is required. Many professionals using cloud transcription services for patient documentation haven't verified whether one is in place.</p>
+
+        <p><strong>A founder in an investor meeting</strong> is discussing information that could materially affect their company. The wrong disclosure at the wrong time — even through a breach of a third-party service they'd never thought about — is not a hypothetical risk in competitive industries.</p>
+
+        <h2>The Gap Between Feeling Private and Being Private</h2>
+
+        <p>There's a consistent pattern in conversations about this: when professionals first hear that their cloud recording service stores their audio on remote servers, they often say something like, "I assumed it was processed but not stored" or "I thought it was encrypted, so I thought it was private."</p>
+
+        <p>These are reasonable intuitions. They're also imprecise.</p>
+
+        <p>Encryption protects data in transit and at rest — it prevents interception and limits unauthorized access. But encrypted data on someone else's server is still data on someone else's server. Encryption means "only authorized people can read it." It doesn't mean "only you have it."</p>
+
+        <p>What professionals usually mean when they say they want their recordings to be private is: <strong>"I want to be the only one who has them."</strong> That's not what most cloud tools provide. They provide security, which is related to but different from the kind of privacy those professionals actually need.</p>
+
+        <h2>The Test That Removes the Ambiguity</h2>
+
+        <p>There's a simple, practical test to understand where a meeting tool's intelligence actually lives.</p>
+
+        <p>Turn off your internet connection. Open the meeting tool. Record something — two minutes of yourself talking. Stop the recording.</p>
+
+        <p>If the transcript appears, the processing happened on your device. Your audio didn't need to go anywhere to be transcribed. There's nothing to transmit.</p>
+
+        <p>If the transcript fails to generate, or generates only after you reconnect, the processing happened in the cloud. Your audio left your machine.</p>
+
+        <p>This test is more definitive than reading a privacy policy, because it doesn't require trust in a company's intentions or understanding of their infrastructure. It tests the behavior directly.</p>
+
+        <h2>The Alternative Architecture</h2>
+
+        <p>There is a different way to build meeting software.</p>
+
+        <p>Instead of recording locally and processing remotely, it's technically possible to do everything on the user's device. The transcription model runs locally. The AI that generates summaries runs locally. The task extraction runs locally. Nothing needs to travel anywhere.</p>
+
+        <p>This approach requires more careful engineering — the software has to be efficient enough to run well on ordinary laptops without cloud-scale computing power. But when it's implemented, the privacy property becomes architectural rather than policy-based. There's nothing to promise because there's nothing to protect against. The data never goes anywhere.</p>
+
+        <p>This is the approach tools built specifically for privacy-sensitive professional use cases take. When you record a meeting on such a tool, the audio stays on your machine — not as a consequence of a decision someone at the company made, but as a consequence of how the software was designed.</p>
+
+        <h2>Questions Worth Asking</h2>
+
+        <p>If you currently use a cloud meeting tool for professional recordings, these are worth knowing the answers to:</p>
+
+        <ul>
+            <li>Where are your recordings stored, and for how long after deletion?</li>
+            <li>Who — employees, contractors, automated systems — can access them?</li>
+            <li>If your recordings contain PHI, have you verified HIPAA compliance with this vendor, including a BAA?</li>
+            <li>If your recordings contain privileged legal communications, have you considered the implications of that data being held by a third party?</li>
+            <li>If your recordings contain client-confidential strategy, are you comfortable with where that data lives?</li>
+        </ul>
+
+        <p>These aren't questions designed to create anxiety. They're questions a careful professional should be able to answer about the tools they use for sensitive work.</p>
+
+        <p>The fact that most haven't answered them isn't negligence. It's that the tools feel safe, work well, and the question hasn't been raised in a way that stuck.</p>
+
+        <p>Consider this the moment it gets raised.</p>
+
+        <hr>
+
+        <p><em>KAVI records and processes meetings entirely on your device. No cloud. No account required. <a href="../">Free plan at kavimeetings.com</a>.</em></p>
+
+    </article>
+
+    <!-- CTA -->
+    <section class="py-16 relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-sage-400/[0.03] to-transparent"></div>
+        <div class="relative max-w-3xl mx-auto px-6 fade-in">
+            <div class="glass rounded-3xl p-8 md:p-12 text-center gradient-border">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-white">Your meetings deserve better<br>than someone else's server.</h2>
+                <p class="text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">Join the waitlist for KAVI — the meeting recorder that processes everything on your laptop. No cloud. No GPU. Free to start.</p>
+                <a href="../#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold px-8 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03]">Join the Waitlist</a>
+                <p class="text-[12px] text-slate-600 mt-4">No credit card. No cloud. No compromise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED POSTS -->
+    <section class="pb-20">
+        <div class="max-w-3xl mx-auto px-6">
+            <p class="text-sm font-medium text-slate-500 uppercase tracking-widest mb-6">More from the blog</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+                <a href="your-meetings-deserve-privacy.html" class="glass rounded-xl p-5 hover:border-white/[0.12] transition-all group">
+                    <div class="inline-block px-2 py-0.5 rounded-full bg-sage-400/10 text-[10px] text-sage-400 font-semibold uppercase tracking-wider mb-3">Privacy</div>
+                    <h4 class="text-sm font-semibold text-white group-hover:text-sage-400 transition-colors leading-snug mb-2">Your Meetings Deserve Privacy. Here's Why Most Tools Don't Provide It.</h4>
+                    <p class="text-[12px] text-slate-500 leading-relaxed">The difference between a privacy promise and a privacy fact — and why it matters for your professional relationships.</p>
+                </a>
+                <a href="meeting-recorder-for-consultants.html" class="glass rounded-xl p-5 hover:border-white/[0.12] transition-all group">
+                    <div class="inline-block px-2 py-0.5 rounded-full bg-kavi-gold/10 text-[10px] text-kavi-gold font-semibold uppercase tracking-wider mb-3">Use Cases</div>
+                    <h4 class="text-sm font-semibold text-white group-hover:text-sage-400 transition-colors leading-snug mb-2">How Management Consultants Use KAVI to Protect Client Confidentiality</h4>
+                    <p class="text-[12px] text-slate-500 leading-relaxed">Your NDA covers your behavior. It doesn't extend to your recording tool's infrastructure.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/[0.04] pt-10 pb-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                <div class="flex items-center gap-2.5">
+                    <img src="../assets/kavi-logo.svg" alt="" class="w-5 h-5 rounded">
+                    <div>
+                        <span class="text-sm font-semibold text-slate-300">KAVI</span>
+                        <span class="text-sm text-slate-600 ml-2">Your meetings. Your machine. Your data.</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://twitter.com/kaviapp" aria-label="KAVI on X" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://github.com/kaviapp" aria-label="KAVI on GitHub" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+                    <a href="https://linkedin.com/company/kaviapp" aria-label="KAVI on LinkedIn" class="text-slate-600 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-[12px] text-slate-600">
+                    <a href="../features.html" class="hover:text-white transition-colors">Feature Docs</a>
+                    <a href="index.html" class="hover:text-white transition-colors">Blog</a>
+                    <a href="../privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="../terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="mailto:hello@kavimeetings.com" class="hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center gap-3 text-[12px] text-slate-700">
+                    <span class="px-2 py-0.5 rounded-full border border-white/[0.06] text-[11px] text-slate-500">Beta</span>
+                    <span>&copy; 2026 KAVI. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('bg-kavi-bg/90', window.scrollY > 20);
+            navbar.classList.toggle('bg-kavi-bg/70', window.scrollY <= 20);
+        }, { passive: true });
+    </script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "64ef29a4621a4dfcaefad4a2cda24959"}'></script>
+</body>
+</html>
