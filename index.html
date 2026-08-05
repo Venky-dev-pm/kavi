@@ -61,12 +61,7 @@
         "Works on CPU — no GPU required",
         "Free for up to 10 meetings per week"
       ],
-      "screenshot": "https://kavimeetings.com/assets/og-image.png",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "1"
-      }
+      "screenshot": "https://kavimeetings.com/assets/og-image.png"
     }
     </script>
 
@@ -115,6 +110,29 @@
             "@type": "Answer",
             "text": "No. KAVI runs entirely on your laptop's CPU. No dedicated GPU is required."
           }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Organization + WebSite Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kavimeetings.com/#organization",
+          "name": "KAVI",
+          "url": "https://kavimeetings.com/",
+          "logo": "https://kavimeetings.com/assets/kavi-logo.svg"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://kavimeetings.com/#website",
+          "name": "KAVI",
+          "url": "https://kavimeetings.com/",
+          "publisher": { "@id": "https://kavimeetings.com/#organization" }
         }
       ]
     }
