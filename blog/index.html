@@ -26,12 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }, colors: { sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' }, kavi: { cyan: '#38BDF8', gold: '#FBBF24', purple: '#a78bfa', bg: '#050508', surface: '#0f172a', card: '#131c2e', border: 'rgba(255,255,255,0.06)' } } } }
-        }
-    </script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <style>
         .fade-in { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
