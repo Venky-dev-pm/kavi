@@ -27,12 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }, colors: { sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' }, kavi: { cyan: '#38BDF8', gold: '#FBBF24', purple: '#a78bfa', bg: '#050508', surface: '#0f172a', card: '#131c2e', border: 'rgba(255,255,255,0.06)' } } } }
-        }
-    </script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <style>
         .fade-in { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -76,6 +71,32 @@
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kavimeetings.com/blog/what-is-kavi.html" }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://kavimeetings.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://kavimeetings.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What Is KAVI? A Meeting Tool That Never Touches the Cloud",
+          "item": "https://kavimeetings.com/blog/what-is-kavi.html"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="bg-kavi-bg text-slate-50 font-sans antialiased overflow-x-hidden">
@@ -83,7 +104,7 @@
     <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/70 border-b border-white/[0.04]" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="../" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
-                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300"><img src="../assets/kavi-logo.svg" alt="" class="w-full h-full"></div>
+                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300"><img src="../assets/kavi-logo.svg" alt="KAVI logo" class="w-full h-full"></div>
                 <span class="text-lg font-bold tracking-tight">KAVI</span>
             </a>
             <div class="hidden md:flex items-center gap-8 text-[13px] text-slate-400 font-medium">
@@ -215,6 +236,15 @@
 
         <p><em>Try KAVI free — no credit card, no account required. <a href="../">Download at kavimeetings.com</a>.</em></p>
 
+    
+        <section class="mt-16 pt-8 border-t border-white/[0.06]">
+          <h2 class="text-xl font-semibold mb-4">Related reading</h2>
+          <ul class="space-y-2">
+            <li><a href="getting-started-with-kavi.html" class="text-sage-400 hover:underline">Getting Started with KAVI</a></li>
+            <li><a href="your-meetings-deserve-privacy.html" class="text-sage-400 hover:underline">Your Meetings Deserve Privacy</a></li>
+            <li><a href="../features.html" class="text-sage-400 hover:underline">Explore All KAVI Features</a></li>
+          </ul>
+        </section>
     </article>
 
     <section class="py-16 relative">
@@ -251,7 +281,7 @@
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
                 <div class="flex items-center gap-2.5">
-                    <img src="../assets/kavi-logo.svg" alt="" class="w-5 h-5 rounded">
+                    <img src="../assets/kavi-logo.svg" alt="KAVI logo" class="w-5 h-5 rounded">
                     <div><span class="text-sm font-semibold text-slate-300">KAVI</span><span class="text-sm text-slate-600 ml-2">Your meetings. Your machine. Your data.</span></div>
                 </div>
                 <div class="flex items-center gap-4">

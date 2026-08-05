@@ -61,12 +61,7 @@
         "Works on CPU — no GPU required",
         "Free for up to 10 meetings per week"
       ],
-      "screenshot": "https://kavimeetings.com/assets/og-image.png",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "1"
-      }
+      "screenshot": "https://kavimeetings.com/assets/og-image.png"
     }
     </script>
 
@@ -120,6 +115,29 @@
     }
     </script>
 
+    <!-- Organization + WebSite Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kavimeetings.com/#organization",
+          "name": "KAVI",
+          "url": "https://kavimeetings.com/",
+          "logo": "https://kavimeetings.com/assets/kavi-logo.svg"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://kavimeetings.com/#website",
+          "name": "KAVI",
+          "url": "https://kavimeetings.com/",
+          "publisher": { "@id": "https://kavimeetings.com/#organization" }
+        }
+      ]
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -131,31 +149,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    },
-                    colors: {
-                        sage: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a' },
-                        kavi: {
-                            cyan: '#38BDF8',
-                            gold: '#FBBF24',
-                            purple: '#a78bfa',
-                            bg: '#050508',
-                            surface: '#0f172a',
-                            card: '#131c2e',
-                            border: 'rgba(255,255,255,0.06)'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
 
     <style>
         /* ── Animations ── */
@@ -248,7 +242,7 @@
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
                 <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                    <img src="assets/kavi-logo.svg" alt="" class="w-full h-full">
+                    <img src="assets/kavi-logo.svg" alt="KAVI logo" class="w-full h-full">
                 </div>
                 <span class="text-lg font-bold tracking-tight">KAVI</span>
             </a>
@@ -1136,7 +1130,7 @@
             <!-- Top row: brand + social -->
             <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
                 <div class="flex items-center gap-2.5">
-                    <img src="assets/kavi-logo.svg" alt="" class="w-5 h-5 rounded">
+                    <img src="assets/kavi-logo.svg" alt="KAVI logo" class="w-5 h-5 rounded">
                     <div>
                         <span class="text-sm font-semibold text-slate-300">KAVI</span>
                         <span class="text-sm text-slate-600 ml-2">Your meetings. Your machine. Your data.</span>
