@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download KAVI — Free Offline Meeting Recorder for Windows, macOS &amp; Linux</title>
+    <meta name="description" content="Download KAVI free. An offline meeting recorder with local AI transcription for Windows, macOS, and Linux. No cloud, no GPU, no account required. Installs in under a minute.">
+    <meta name="keywords" content="download offline meeting recorder, kavi download, local AI transcription download, meeting recorder windows mac linux, private meeting recorder download">
+    <link rel="canonical" href="https://kavimeetings.com/download.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Download KAVI — Offline Meeting Recorder for Windows, macOS &amp; Linux">
+    <meta property="og:description" content="Free download. Records and transcribes meetings 100% on your machine. No cloud, no GPU, no account.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kavimeetings.com/download.html">
+    <meta property="og:image" content="https://kavimeetings.com/assets/og-image.png">
+    <meta property="og:site_name" content="KAVI">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@kavimeetings">
+    <meta name="twitter:title" content="Download KAVI — Offline Meeting Recorder">
+    <meta name="twitter:description" content="Free download for Windows, macOS &amp; Linux. Records and transcribes meetings 100% on your machine.">
+    <meta name="twitter:image" content="https://kavimeetings.com/assets/og-image.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "KAVI",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows 10, Windows 11, macOS 12+, Ubuntu 20.04+",
+      "softwareVersion": "0.1.0-beta.7",
+      "datePublished": "2026-07-20",
+      "downloadUrl": "https://kavimeetings.com/download.html",
+      "installUrl": "https://kavimeetings.com/download.html",
+      "softwareRequirements": "64-bit CPU, 8 GB RAM, 4 GB free disk space. No GPU required.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "name": "Free Plan"
+      },
+      "description": "KAVI is an offline meeting recorder and AI transcription tool that runs 100% locally on your laptop. No cloud, no GPU required.",
+      "url": "https://kavimeetings.com/download.html"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS -->
+    <link rel="stylesheet" href="assets/tailwind.css">
+
+    <style>
+        /* ── Animations ── */
+        @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 24px rgba(74,222,128,0.25); } 50% { box-shadow: 0 0 48px rgba(74,222,128,0.45); } }
+        .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+
+        .fade-in { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+
+        /* ── Glass ── */
+        .glass { background: rgba(255,255,255,0.025); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+        .glass-strong { background: rgba(255,255,255,0.04); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); }
+
+        /* ── Gradients ── */
+        .gradient-text { background: linear-gradient(135deg, #4ade80, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* ── Utilities not present in the pre-compiled tailwind.css ── */
+        .mt-auto { margin-top: auto; }
+        .overflow-x-auto { overflow-x: auto; }
+        .scroll-mt-16 { scroll-margin-top: 4rem; }
+
+        /* ── Platform cards ── */
+        .platform-card { transition: all 0.3s ease; }
+        .platform-card:hover { transform: translateY(-4px); }
+        .platform-card[data-detected="true"] { background: rgba(74,222,128,0.04); border-color: rgba(74,222,128,0.28); }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050508; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+
+        /* ── Mobile menu ── */
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+        .mobile-menu.open { max-height: 320px; }
+
+        /* ── Noise texture ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            opacity: 0.015;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body class="bg-kavi-bg text-slate-50 font-sans antialiased overflow-x-hidden">
+
+<!--
+╔══════════════════════════════════════════════════════════════════════════╗
+║  RELEASE DATA — THE ONLY THING TO UPDATE WHEN A NEW BUILD SHIPS           ║
+╠══════════════════════════════════════════════════════════════════════════╣
+║  Current release : v0.1.0-beta.7                                         ║
+║  Published       : 20 July 2026                                          ║
+║  Source repo     : github.com/Venky-dev-pm/kavi-releases                 ║
+║                                                                          ║
+║  TO UPDATE, from the repo root run:                                      ║
+║      sed -i 's/0.1.0-beta.7/0.1.0-beta.8/g' download.html                ║
+║                                                                          ║
+║  That rewrites the version badge, all four download links, the           ║
+║  release-notes link and the JSON-LD softwareVersion in one shot. Then     ║
+║  hand-edit only these, in the "DOWNLOADS" section below the hero:         ║
+║                                                                          ║
+║      Published date .... <span data-release-date>                        ║
+║      Windows .exe ...... 7.2 MB   Kavi_0.1.0_x64-setup.exe               ║
+║      Windows .msi ...... 15.7 MB  Kavi_0.1.0_x64_en-US.msi               ║
+║      macOS   .dmg ...... 8.6 MB   Kavi_0.1.0_aarch64.dmg                 ║
+║      Linux   .deb ...... 17.1 MB  Kavi_0.1.0_amd64.deb                   ║
+║                                                                          ║
+║  If the app version (0.1.0) changes, the filenames change too — sed       ║
+║  that separately. If a platform has no build in a release, delete that    ║
+║  whole <article class="platform-card"> block; the grid reflows on its     ║
+║  own and no dead link is left behind.                                     ║
+║  Finally update "datePublished" in the JSON-LD block above.               ║
+╚══════════════════════════════════════════════════════════════════════════╝
+-->
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- NAVIGATION                                                         -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-kavi-bg/70 border-b border-white/[0.04]">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2.5 group" aria-label="KAVI Home">
+                <div class="w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                    <img src="assets/kavi-logo.svg" alt="KAVI logo" class="w-full h-full">
+                </div>
+                <span class="text-lg font-bold tracking-tight">KAVI</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8 text-[13px] text-slate-400 font-medium">
+                <a href="index.html#features" class="hover:text-white transition-colors duration-200">Features</a>
+                <a href="index.html#use-cases" class="hover:text-white transition-colors duration-200">Use Cases</a>
+                <a href="index.html#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+                <a href="features.html" class="hover:text-white transition-colors duration-200">Feature Docs</a>
+                <a href="blog/index.html" class="hover:text-white transition-colors duration-200">Blog</a>
+                <a href="download.html" class="text-white" aria-current="page">Download</a>
+            </div>
+
+            <!-- CTA + Mobile toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#downloads" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">
+                    Get KAVI
+                </a>
+                <button class="md:hidden p-2 text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-nav" class="mobile-menu md:hidden border-t border-white/[0.04] bg-kavi-bg/95 backdrop-blur-xl">
+            <div class="px-6 py-4 space-y-3 text-sm">
+                <a href="index.html#features" class="block text-slate-400 hover:text-white">Features</a>
+                <a href="index.html#use-cases" class="block text-slate-400 hover:text-white">Use Cases</a>
+                <a href="index.html#pricing" class="block text-slate-400 hover:text-white">Pricing</a>
+                <a href="features.html" class="block text-slate-400 hover:text-white">Feature Docs</a>
+                <a href="blog/index.html" class="block text-slate-400 hover:text-white">Blog</a>
+                <a href="download.html" class="block text-white">Download</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- HERO                                                               -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="relative pt-16 overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-sage-400/[0.07] rounded-full blur-[160px]"></div>
+            <div class="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-kavi-cyan/[0.04] rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+            <!-- Version badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[12px] sm:text-[13px] text-slate-300 mb-6">
+                <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse shrink-0"></span>
+                <span>v0.1.0-beta.7 &middot; Public Beta &middot; Free</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-[2rem] sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-5">
+                Download KAVI.<br>
+                <span class="gradient-text">Nothing Leaves Your Laptop.</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed mb-8">
+                Record, transcribe and summarise every meeting entirely on your own machine. No account, no cloud, no GPU. Install it and it works offline from the first minute.
+            </p>
+
+            <!-- Primary CTA (retargeted by JS to the visitor's OS) -->
+            <div class="flex flex-col items-center gap-3 mb-8">
+                <a id="primary-download"
+                   href="#downloads"
+                   class="inline-flex items-center justify-center gap-2.5 bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span id="primary-download-label">Choose your platform</span>
+                </a>
+                <a href="#downloads" class="text-[13px] text-slate-500 hover:text-white transition-colors">
+                    All platforms and formats &darr;
+                </a>
+            </div>
+
+            <!-- Trust row -->
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-slate-500">
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    100% Local
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    CPU only &mdash; no GPU
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    No account needed
+                </span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- DOWNLOADS                                                          -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="downloads" class="py-16 md:py-20 relative scroll-mt-16">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-10">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Pick your platform</h2>
+                    <p class="text-slate-500 text-sm mt-2">
+                        Release <span class="text-slate-300 font-mono text-[13px]">v0.1.0-beta.7</span>
+                        &middot; published <span data-release-date>20 July 2026</span>
+                    </p>
+                </div>
+                <a href="https://github.com/Venky-dev-pm/kavi-releases/releases/tag/v0.1.0-beta.7" target="_blank" rel="noopener noreferrer" class="text-[13px] text-sage-400 hover:underline shrink-0">
+                    Release notes &amp; checksums on GitHub &rarr;
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5">
+
+                <!-- ── Windows ── -->
+                <article class="platform-card glass rounded-2xl p-7 flex flex-col" data-platform="windows">
+                    <div class="flex items-center gap-3 mb-5">
+                        <svg class="w-7 h-7 text-slate-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+                        <div>
+                            <h3 class="font-semibold text-white leading-tight">Windows</h3>
+                            <p class="text-[12px] text-slate-500">Windows 10 &amp; 11 &middot; 64-bit</p>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/Venky-dev-pm/kavi-releases/releases/download/v0.1.0-beta.7/Kavi_0.1.0_x64-setup.exe"
+                       class="flex items-center justify-center gap-2 bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-3 rounded-full hover:bg-sage-500 transition-all hover:scale-[1.02] mb-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        Download .exe
+                    </a>
+                    <p class="text-[12px] text-slate-500 text-center mb-4">Installer &middot; 7.2 MB</p>
+
+                    <div class="mt-auto pt-6 border-t border-white/[0.06]">
+                        <a href="https://github.com/Venky-dev-pm/kavi-releases/releases/download/v0.1.0-beta.7/Kavi_0.1.0_x64_en-US.msi"
+                           class="flex items-center justify-between text-[13px] text-slate-400 hover:text-white transition-colors">
+                            <span>Prefer MSI? Download .msi</span>
+                            <span class="text-slate-600">15.7 MB</span>
+                        </a>
+                        <p class="text-[11px] text-slate-600 mt-2">For managed or enterprise deployment.</p>
+                    </div>
+                </article>
+
+                <!-- ── macOS ── -->
+                <article class="platform-card glass rounded-2xl p-7 flex flex-col" data-platform="macos">
+                    <div class="flex items-center gap-3 mb-5">
+                        <svg class="w-7 h-7 text-slate-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08M12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25"/></svg>
+                        <div>
+                            <h3 class="font-semibold text-white leading-tight">macOS</h3>
+                            <p class="text-[12px] text-slate-500">macOS 12+ &middot; Apple Silicon</p>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/Venky-dev-pm/kavi-releases/releases/download/v0.1.0-beta.7/Kavi_0.1.0_aarch64.dmg"
+                       class="flex items-center justify-center gap-2 bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-3 rounded-full hover:bg-sage-500 transition-all hover:scale-[1.02] mb-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        Download .dmg
+                    </a>
+                    <p class="text-[12px] text-slate-500 text-center mb-4">Apple Silicon &middot; 8.6 MB</p>
+
+                    <div class="mt-auto pt-6 border-t border-white/[0.06]">
+                        <p class="text-[13px] text-slate-400">M1, M2, M3 and M4 Macs.</p>
+                        <p class="text-[11px] text-slate-600 mt-2">Intel Macs are not supported yet &mdash; an x86_64 build is on the way.</p>
+                    </div>
+                </article>
+
+                <!-- ── Linux ── -->
+                <article class="platform-card glass rounded-2xl p-7 flex flex-col" data-platform="linux">
+                    <div class="flex items-center gap-3 mb-5">
+                        <svg class="w-7 h-7 text-slate-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+                        <div>
+                            <h3 class="font-semibold text-white leading-tight">Linux</h3>
+                            <p class="text-[12px] text-slate-500">Ubuntu 20.04+ &middot; Debian &middot; x86_64</p>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/Venky-dev-pm/kavi-releases/releases/download/v0.1.0-beta.7/Kavi_0.1.0_amd64.deb"
+                       class="flex items-center justify-center gap-2 bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-3 rounded-full hover:bg-sage-500 transition-all hover:scale-[1.02] mb-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        Download .deb
+                    </a>
+                    <p class="text-[12px] text-slate-500 text-center mb-4">Debian package &middot; 17.1 MB</p>
+
+                    <div class="mt-auto pt-6 border-t border-white/[0.06]">
+                        <p class="text-[13px] text-slate-400">Install with:</p>
+                        <code class="block mt-2 text-[11px] font-mono text-sage-400 bg-white/5 rounded px-2 py-1.5 overflow-x-auto">sudo dpkg -i Kavi_0.1.0_amd64.deb</code>
+                        <p class="text-[11px] text-slate-600 mt-2">AppImage and .rpm builds are coming.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- SYSTEM REQUIREMENTS                                                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-16 md:py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">What you need to run it</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">KAVI runs the AI models on your CPU. If your laptop can open a browser and a spreadsheet at the same time, it can run KAVI.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-sage-400 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-white text-sm mb-1">Processor</h3>
+                    <p class="text-[13px] text-slate-400 leading-relaxed">Any 64-bit CPU from the last 5 years. No GPU, no NPU, no dedicated hardware.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-sage-400 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10a1 1 0 001 1h14a1 1 0 001-1V7a1 1 0 00-1-1H5a1 1 0 00-1 1zm4 3v4m4-4v4m4-4v4"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-white text-sm mb-1">Memory</h3>
+                    <p class="text-[13px] text-slate-400 leading-relaxed">8 GB RAM minimum. 16 GB if you want to keep other heavy apps open while recording.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-sage-400 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 1.66 3.58 3 8 3s8-1.34 8-3V7M4 7c0 1.66 3.58 3 8 3s8-1.34 8-3M4 7c0-1.66 3.58-3 8-3s8 1.34 8 3"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-white text-sm mb-1">Disk</h3>
+                    <p class="text-[13px] text-slate-400 leading-relaxed">About 4 GB free. The app is small; the local AI models are the bulk of it.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6">
+                    <div class="text-sage-400 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-white text-sm mb-1">Internet</h3>
+                    <p class="text-[13px] text-slate-400 leading-relaxed">Needed once, to fetch the models on first launch. After that KAVI works fully offline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FIRST LAUNCH                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-16 md:py-20 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">First launch, step by step</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">KAVI is in public beta and the builds are not yet code-signed, so your operating system will warn you the first time. Here is exactly what you will see.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass rounded-2xl p-6 flex gap-5">
+                    <div class="w-8 h-8 rounded-full bg-sage-400/10 text-sage-400 flex items-center justify-center font-semibold text-sm shrink-0">1</div>
+                    <div>
+                        <h3 class="font-semibold text-white mb-2">Install the download</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">On Windows, run the installer. On macOS, open the .dmg and drag KAVI into Applications. On Linux, run <code class="text-[12px] font-mono text-sage-400 bg-white/5 px-1.5 py-0.5 rounded">sudo dpkg -i</code> against the .deb.</p>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl p-6 flex gap-5">
+                    <div class="w-8 h-8 rounded-full bg-kavi-gold/10 text-kavi-gold flex items-center justify-center font-semibold text-sm shrink-0">2</div>
+                    <div>
+                        <h3 class="font-semibold text-white mb-2">Get past the unsigned-app warning</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-2">This is expected during beta and does not mean anything is wrong with the file.</p>
+                        <ul class="space-y-1.5 text-[13px] text-slate-400">
+                            <li><strong class="text-slate-300">Windows:</strong> SmartScreen shows &ldquo;Windows protected your PC&rdquo;. Click <em>More info</em>, then <em>Run anyway</em>.</li>
+                            <li><strong class="text-slate-300">macOS:</strong> Gatekeeper says the app cannot be verified. Open <em>System Settings &rarr; Privacy &amp; Security</em> and click <em>Open Anyway</em>.</li>
+                            <li><strong class="text-slate-300">Linux:</strong> no warning, but you may need <code class="text-[12px] font-mono text-sage-400 bg-white/5 px-1.5 py-0.5 rounded">sudo apt-get install -f</code> to pull dependencies.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl p-6 flex gap-5">
+                    <div class="w-8 h-8 rounded-full bg-kavi-cyan/10 text-kavi-cyan flex items-center justify-center font-semibold text-sm shrink-0">3</div>
+                    <div>
+                        <h3 class="font-semibold text-white mb-2">Let the models download once</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">On first run KAVI fetches its local AI models, roughly 2&ndash;3 GB. This happens once. Everything after that runs offline on your own machine.</p>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl p-6 flex gap-5">
+                    <div class="w-8 h-8 rounded-full bg-sage-400/10 text-sage-400 flex items-center justify-center font-semibold text-sm shrink-0">4</div>
+                    <div>
+                        <h3 class="font-semibold text-white mb-2">Grant microphone access and record</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Allow microphone access when prompted, then hit record. Transcription, summaries and action items all happen locally. New to KAVI? Start with the <a href="blog/getting-started-with-kavi.html" class="text-sage-400 hover:underline">getting started guide</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- PRIVACY STRIP                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-12 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-strong rounded-2xl p-8 md:p-10 text-center">
+                <div class="w-12 h-12 rounded-2xl bg-sage-400/10 text-sage-400 flex items-center justify-center mx-auto mb-5">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-bold tracking-tight mb-3">Your recordings never leave this machine</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto leading-relaxed mb-5">
+                    There is no KAVI server to upload to. Recordings, transcripts, summaries and tasks are written to your local disk and processed by AI models running on your own CPU. We collect no telemetry from the app.
+                </p>
+                <a href="privacy.html" class="text-[13px] text-sage-400 hover:underline">Read the privacy policy &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- STAY UPDATED                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-16 md:py-20 relative">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4">Want a nudge when the next build lands?</h2>
+            <p class="text-slate-400 mb-8 max-w-lg mx-auto">Beta releases ship regularly. Join the list and we will tell you what changed &mdash; or watch the repo if you would rather follow along on GitHub.</p>
+            <div class="flex flex-col sm:flex-row items-stretch md:items-center justify-center gap-3">
+                <a href="index.html#waitlist" class="text-center bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03]">
+                    Get release updates
+                </a>
+                <a href="https://github.com/Venky-dev-pm/kavi-releases/releases" target="_blank" rel="noopener noreferrer" class="text-center glass px-7 py-3.5 rounded-full text-[15px] text-slate-300 hover:text-white transition-all">
+                    All releases on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FEEDBACK                                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="py-12 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass rounded-2xl p-8 md:p-10 text-center">
+                <div class="w-12 h-12 rounded-2xl bg-sage-400/10 text-sage-400 flex items-center justify-center mx-auto mb-5">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                </div>
+                <h2 class="text-xl md:text-2xl font-bold tracking-tight mb-3">Hit a bug? Got an idea?</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
+                    This is a beta, and the roadmap is still being shaped by the people using it. Crashes, rough edges, missing features, things that felt confusing &mdash; all of it is useful. Tell us what you ran into and what you wish it did.
+                </p>
+                <a href="mailto:hello@kavimeetings.com?subject=KAVI%20beta%20feedback%20(v0.1.0-beta.7)"
+                   class="inline-flex items-center justify-center gap-2 bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Send suggestions or a bug report
+                </a>
+                <p class="text-[13px] text-slate-500 mt-4">
+                    hello@kavimeetings.com &middot; mentioning your OS and version helps us reproduce it faster.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FOOTER                                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <footer class="border-t border-white/[0.04] py-12 mt-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/kavi-logo.svg" alt="KAVI logo" class="w-5 h-5 rounded">
+                    <div>
+                        <span class="text-sm font-semibold text-slate-300">KAVI</span>
+                        <span class="text-sm text-slate-600 ml-2">Your meetings. Your machine. Your data.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-[12px] text-slate-600">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="features.html" class="hover:text-white transition-colors">Feature Docs</a>
+                    <a href="blog/index.html" class="hover:text-white transition-colors">Blog</a>
+                    <a href="download.html" class="hover:text-white transition-colors">Download</a>
+                    <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="mailto:hello@kavimeetings.com" class="hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3 text-[12px] text-slate-700">
+                    <span class="px-2 py-0.5 rounded-full border border-white/[0.06] text-[11px] text-slate-500">Beta</span>
+                    <span>&copy; 2026 KAVI. All rights reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- SCRIPTS                                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <script>
+        // Point the hero button at the visitor's platform. If detection fails the
+        // button keeps its default "#downloads" href, so it always does something.
+        (function () {
+            var ua = navigator.userAgent || '';
+            var platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+            var probe = (platform + ' ' + ua).toLowerCase();
+
+            var detected = null;
+            if (probe.indexOf('win') !== -1) detected = 'windows';
+            else if (probe.indexOf('mac') !== -1 && probe.indexOf('iphone') === -1 && probe.indexOf('ipad') === -1) detected = 'macos';
+            else if (probe.indexOf('linux') !== -1 && probe.indexOf('android') === -1) detected = 'linux';
+
+            if (!detected) return;
+
+            var card = document.querySelector('.platform-card[data-platform="' + detected + '"]');
+            if (!card) return;
+
+            var assetLink = card.querySelector('a[href*="/releases/download/"]');
+            if (!assetLink) return;
+
+            card.setAttribute('data-detected', 'true');
+
+            var labels = { windows: 'Download for Windows', macos: 'Download for macOS', linux: 'Download for Linux' };
+            var button = document.getElementById('primary-download');
+            var label = document.getElementById('primary-download-label');
+            if (button && label) {
+                button.href = assetLink.href;
+                label.textContent = labels[detected];
+            }
+        })();
+
+        // Fade-in on scroll
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(function (el) { observer.observe(el); });
+
+        // Close the mobile menu after tapping a link
+        document.querySelectorAll('#mobile-nav a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                document.getElementById('mobile-nav').classList.remove('open');
+            });
+        });
+    </script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "64ef29a4621a4dfcaefad4a2cda24959"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
