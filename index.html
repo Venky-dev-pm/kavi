@@ -149,7 +149,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- TailwindCSS -->
-    <link rel="stylesheet" href="/assets/tailwind.css">
+    <link rel="stylesheet" href="assets/tailwind.css">
 
     <style>
         /* ── Animations ── */
@@ -217,7 +217,7 @@
 
         /* ── Mobile menu ── */
         .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
-        .mobile-menu.open { max-height: 320px; }
+        .mobile-menu.open { max-height: 420px; }
 
         /* ── Noise texture ── */
         body::before {
@@ -255,12 +255,13 @@
                 <a href="#faq" class="hover:text-white transition-colors duration-200">FAQ</a>
                 <a href="features.html" class="hover:text-white transition-colors duration-200">Feature Docs</a>
                 <a href="blog/index.html" class="hover:text-white transition-colors duration-200">Blog</a>
+                <a href="download.html" class="hover:text-white transition-colors duration-200">Download</a>
             </div>
 
             <!-- CTA + Mobile toggle -->
             <div class="flex items-center gap-3">
-                <a href="#waitlist" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">
-                    Join Waitlist
+                <a href="download.html" class="bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full hover:bg-sage-500 transition-all duration-200 hover:scale-105 hidden sm:block">
+                    Get the Beta
                 </a>
                 <button class="md:hidden p-2 text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -277,7 +278,8 @@
                 <a href="#faq" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">FAQ</a>
                 <a href="features.html" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Feature Docs</a>
                 <a href="blog/index.html" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Blog</a>
-                <a href="#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full mt-2" onclick="document.getElementById('mobile-nav').classList.remove('open')">Join Waitlist</a>
+                <a href="download.html" class="block text-slate-400 hover:text-white" onclick="document.getElementById('mobile-nav').classList.remove('open')">Download</a>
+                <a href="download.html" class="inline-block bg-sage-400 text-kavi-bg font-semibold text-sm px-5 py-2 rounded-full mt-2" onclick="document.getElementById('mobile-nav').classList.remove('open')">Get the Beta</a>
             </div>
         </div>
     </nav>
@@ -300,7 +302,7 @@
                     <!-- Badge -->
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[12px] sm:text-[13px] text-slate-300 mb-6 max-w-full">
                         <span class="w-1.5 h-1.5 bg-sage-400 rounded-full animate-pulse shrink-0"></span>
-                        <span>Beta launching Q2 2026 &middot; No credit card required</span>
+                        <span>Public beta out now &middot; No credit card required</span>
                     </div>
 
                     <!-- Headline -->
@@ -317,8 +319,8 @@
 
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 mb-8">
-                        <a href="#waitlist" class="text-center bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
-                            Join the Waitlist
+                        <a href="download.html" class="text-center bg-sage-400 text-kavi-bg font-semibold px-7 py-3.5 rounded-full text-[15px] hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
+                            Get the Beta
                         </a>
                         <a href="#features" class="text-center glass px-7 py-3.5 rounded-full text-[15px] text-slate-300 hover:text-white transition-all hover:bg-white/[0.06]">
                             See how it works &darr;
@@ -810,7 +812,7 @@
                             <span class="text-slate-400">100% local &mdash; nothing uploaded</span>
                         </li>
                     </ul>
-                    <a href="#waitlist" class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold text-slate-300 hover:text-white transition-all hover:bg-white/[0.06]">
+                    <a href="download.html" class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold text-slate-300 hover:text-white transition-all hover:bg-white/[0.06]">
                         Get Started Free
                     </a>
                 </div>
@@ -961,13 +963,13 @@
             <div class="text-center mb-10 fade-in">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-[13px] text-sage-400 mb-6">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Beta launching Q2 2026
+                    Public beta out now
                 </div>
                 <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                    Get early access to <span class="gradient-text">KAVI</span>
+                    Keep up with <span class="gradient-text">KAVI</span>
                 </h2>
                 <p class="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-                    Join the waitlist to get first access when we launch. Free tier included &mdash; no credit card required.
+                    The beta is free to <a href="download.html" class="text-sage-400 hover:underline">download today</a>. Join the list and we will email you when new builds ship &mdash; no credit card required.
                 </p>
             </div>
 
@@ -1036,6 +1038,12 @@
                 Form not loading?
                 <a href="https://tally.so/r/XxWDY4" target="_blank" rel="noopener noreferrer" class="text-sage-400 hover:underline">Open it directly &rarr;</a>
             </p>
+
+            <p class="text-center text-sm text-slate-500 mt-6">
+                Suggestions, criticism or a bug from the beta? Email
+                <a href="mailto:hello@kavimeetings.com?subject=KAVI%20feedback" class="text-sage-400 hover:underline">hello@kavimeetings.com</a>
+                &mdash; we read every one.
+            </p>
         </div>
     </section>
 
@@ -1093,11 +1101,11 @@
 
                 <details class="glass rounded-xl group fade-in fade-in-delay-4">
                     <summary class="p-5 cursor-pointer flex items-center justify-between font-medium text-[15px] hover:text-sage-400 transition-colors">
-                        When will KAVI be available?
+                        Is KAVI available to use right now?
                         <svg class="w-4 h-4 text-slate-500 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                     </summary>
                     <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">
-                        Beta launching Q2 2026. Waitlist members get first access. Join the waitlist above to be among the first to try KAVI.
+                        Yes. KAVI is available today as a free public beta for Windows, macOS and Linux &mdash; no account required. <a href="download.html" class="text-sage-400 hover:underline">Download it here</a>. Join the list above if you would like an email when new builds ship.
                     </div>
                 </details>
             </div>
@@ -1114,9 +1122,9 @@
             <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">
                 Your meetings deserve better<br>than someone else's server.
             </h2>
-            <p class="text-slate-400 text-lg mb-8 max-w-lg mx-auto">Join the waitlist. Keep your meetings private.</p>
-            <a href="#waitlist" class="inline-block bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-lg hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
-                Join the Waitlist
+            <p class="text-slate-400 text-lg mb-8 max-w-lg mx-auto">Download the free beta. Keep your meetings private.</p>
+            <a href="download.html" class="inline-block bg-sage-400 text-kavi-bg font-semibold px-8 py-4 rounded-full text-lg hover:bg-sage-500 transition-all hover:scale-[1.03] animate-glow">
+                Get the Beta
             </a>
         </div>
     </section>
@@ -1155,6 +1163,7 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
                 <div class="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-[12px] text-slate-600">
                     <a href="features.html" class="hover:text-white transition-colors">Feature Docs</a>
+                    <a href="download.html" class="hover:text-white transition-colors">Download</a>
                     <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
                     <a href="mailto:hello@kavimeetings.com" class="hover:text-white transition-colors">Contact</a>
